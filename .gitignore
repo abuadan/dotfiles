@@ -1,0 +1,13 @@
+*.DS_Store
+
+
+# Files to not ignore
+!/.gitignore
+
+# Folder to not ignore
+!/nvim
+!/neofetch
+!/kitty
+!/iterm2
+!/alacritty
+

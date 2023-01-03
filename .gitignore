@@ -1,16 +1,2 @@
-*
 *.DS_Store
-
-
-# Files to not ignore
-!/.gitignore
-!/.gitmodules
-
-# Folder to not ignore
-!/wezterm
-!/nvim
-!/neofetch
-!/kitty
-!/iterm2
-!/alacritty
-!/tmux
+./gh/hosts.yml

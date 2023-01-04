@@ -13,16 +13,16 @@ title() {
 }
 
 error() {
-    echo -e "${COLOR_RED}Error: ${COLOR_NONE}$1"
+    echo -e "${COLOR_RED}ERROR: ${COLOR_NONE}$1"
     exit 1
 }
 
 warning() {
-    echo -e "${COLOR_YELLOW}Warning: ${COLOR_NONE}$1"
+    echo -e "${COLOR_YELLOW}WARNING: ${COLOR_NONE}$1"
 }
 
 info() {
-    echo -e "${COLOR_BLUE}Info: ${COLOR_NONE}$1"
+    echo -e "${COLOR_BLUE}INFO: ${COLOR_NONE}$1"
 }
 
 success() {

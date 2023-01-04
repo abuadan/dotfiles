@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
 
+set +e
 
-############ Source files to help provide   ############
-############ better echo and path to config ############
-############ files repo                     ############
-
-DIR="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P || exit )"
-
+DIR="$(dirname "$0")"
 . "$DIR/../utils/pretty_echo.sh" --source-only
 
 title "Configuring macOS"

@@ -51,7 +51,10 @@ brew "glow"
 brew "zstd"
 brew "k9s"
 brew "kind"
+brew "kubectx"
 brew "helm"
 brew "pygments"
-
-
+brew "cowsay"
+brew "lolcat"
+brew "zoxide"
+brew "zsh-syntax-highlighting"

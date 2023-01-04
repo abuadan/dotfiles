@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+### print logs of docker container using fzf to search container ###
+docker logs -f $(docker ps | fzf | awk '{print $1}')
+
+get_secert () {
+    aws secretsmanager get-secret-value --secret-id $1 | jq
+}
+

@@ -1,0 +1,115 @@
+#!/usr/bin/env bash
+
+set +e
+
+SCRIPT=$(realpath -s "$0")
+DIR=$(dirname "$SCRIPT")
+. "$DIR/../utils/pretty_echo.sh" --source-only
+
+title "Configuring macOS"
+
+###############################################################################
+# Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
+###############################################################################
+
+info "Trackpad: enable tap to click for this user and for the login screen"
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+info "Trackpad: map bottom right corner to right-click"
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
+
+info "Disable \“natural\” (Lion-style) scrolling"
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+
+info "Increase sound quality for Bluetooth headphones/headsets"
+defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+
+info "Enable full keyboard access for all controls"
+info "# (e.g. enable Tab in modal dialogs)"
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+info "expand save dialog by default"
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+
+info "Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+
+###############################################################################
+# Terminal & iTerm 2                                                          #
+###############################################################################
+
+info "only use UTF-8 in Terminal.app"
+defaults write com.apple.terminal StringEncodings -array 4
+
+info "Don’t display the annoying prompt when quitting iTerm"
+defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+
+###############################################################################
+# Screen                                                                      #
+###############################################################################
+
+
+info "Enable HiDPI display modes (requires restart)"
+sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
+
+info "Enable subpixel font rendering on non-Apple LCDs"
+defaults write NSGlobalDomain AppleFontSmoothing -int 2
+
+###############################################################################
+# Finder                                                                      #
+###############################################################################
+
+info "Finder: show all filename extensions"
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+info "show hidden files by default"
+defaults write com.apple.Finder AppleShowAllFiles -bool false
+
+info "show the ~/Library folder in Finder"
+chflags nohidden ~/Library
+
+info "show the $HOME folder in Finder"
+chflags nohidden ~/
+
+info "Use current directory as default search scope in Finder"
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+info "Show Path bar in Finder"
+defaults write com.apple.finder ShowPathbar -bool true
+
+info "Show Status bar in Finder"
+defaults write com.apple.finder ShowStatusBar -bool true
+
+info "Finder: show all filename extensions"
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+info "Disable press-and-hold for keys in favor of key repcat"
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+ifno "Avoid creating .DS_Store files on network or USB volumes"
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+info "Set a blazingly fast keyboard repeat rate"
+defaults write NSGlobalDomain KeyRepeat -int 1
+
+info "Set a shorter Delay until key repeat"
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+
+info "Enable tap to click (Trackpad)"
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+
+info "Enable Safari’s debug menu"
+defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+
+info "Kill affected applications"
+
+for app in Safari Finder Dock Mail SystemUIServer; do killall "$app" >/dev/null 2>&1; done
+
+info "Done. Note that some of these changes require a logout/restart to take effect."

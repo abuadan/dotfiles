@@ -1,12 +1,12 @@
 [submodule "nvim"]
 	path = nvim
-	url = git@github.com:abuadan/nvim.git
+	url = https://github.com/abuadan/nvim.git
 [submodule "dev-fonts"]
 	path = wezterm/setup_wezterm/dev-fonts/
-	url = git@github.com:festackcode/dev-fonts.git
+	url = https://github.com/festackcode/dev-fonts.git
 [submodule "Operator-Mono"]
 	path = wezterm/setup_wezterm/Operator-Mono
-	url = git@github.com:keyding/Operator-Mono.git
+	url = https://github.com/keyding/Operator-Mono.git
 [submodule "kiliman-operator-mono=lig-docker"]
 	path = wezterm/setup_wezterm/kiliman-operator-mono-lig-docker
-	url = git@github.com:drod3763/kiliman-operator-mono-lig-docker.git
+	url = https://github.com/drod3763/kiliman-operator-mono-lig-docker.git

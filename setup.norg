@@ -1,0 +1,28 @@
+@document.meta
+title: setup
+description: TODO to compplete setup of Dotfiles
+authors: abuadan
+categories:
+created: 2023-01-08
+updated: 2023-01-08
+version: 1.0.0
+@end
+
+= TOC
+
+* Test
+** Another Test
+
+
+* This is a test of the Function of neorg
+  Neoorg is this and that
+  - [ ]
+  -- [!] This
+# Dotfiles Repo
+
+  @code lua
+  require("test")
+  @end
+
+This repo is a WIP, with some
+  - [ ] This is an Undone test

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+
+
+SCRIPT=$(realpath -s "$0")
+DIR=$(dirname "$SCRIPT")
+. "$DIR/../utils/pretty_echo.sh" --source-only
+. "$DIR/../utils/dotfiles_home.sh" --source-only
+
+backup() {
+	# check for local .zshrc and backit up
+}
+
+backup

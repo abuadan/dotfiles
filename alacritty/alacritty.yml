@@ -9,7 +9,7 @@
 # All imports must either be absolute paths starting with `/`, or paths relative
 # to the user's home directory starting with `~/`.
 import:
- - ~/.config/alacritty/tokoynight_storm.yml
+ - ~/.config/alacritty/themes/tokoynight_storm.yml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -22,16 +22,16 @@ env:
   # Note that some xterm terminfo databases don't declare support for italics.
   # You can verify this by checking for the presence of `smso` and `sitm` in
   # `infocmp xterm-256color`
-  TERM: alacritty
-  # TERM: xterm-256color
+  # TERM: alacritty
+  TERM: xterm-256color
   # TERM: nvim
 
 window:
   # Window title
   title: Alacritty
-  padding:
-    x: 10
-    y: 4
+  # padding:
+  #   x: 10
+  #   y: 4
   # Allow terminal applications to change Alacritty's window title.
   dynamic_title: true
 
@@ -183,13 +183,15 @@ key_bindings:
   - { key: Paste,                                       action: Paste          }
   - { key: Copy,                                        action: Copy           }
   - { key: L,         mods: Control,                    action: ClearLogNotice }
-  - { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
+  - { key: L,         mods: Control, mode: ~Search, chars: "\x0c"          }
+  - { key: L,         mods: Control, mode: ~Vi, chars: "\x0c"          }
   - { key: PageUp,    mods: Shift,   mode: ~Alt,        action: ScrollPageUp,  }
   - { key: PageDown,  mods: Shift,   mode: ~Alt,        action: ScrollPageDown }
   - { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop,   }
   - { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
   # Search Mode
-  - { key: Return,                mode: Search|Vi,  action: SearchConfirm         }
+  # - { key: Return,                mode: Vi,  action: SearchConfirm         }
+  - { key: Return,                mode: Search,  action: SearchConfirm         }
   - { key: Escape,                mode: Search,     action: SearchCancel          }
   - { key: C,      mods: Control, mode: Search,     action: SearchCancel          }
   - { key: U,      mods: Control, mode: Search,     action: SearchClear           }
@@ -198,8 +200,10 @@ key_bindings:
   - { key: N,      mods: Control, mode: Search,     action: SearchHistoryNext     }
   - { key: Up,                    mode: Search,     action: SearchHistoryPrevious }
   - { key: Down,                  mode: Search,     action: SearchHistoryNext     }
-  - { key: Return,                mode: Search|~Vi, action: SearchFocusNext       }
-  - { key: Return, mods: Shift,   mode: Search|~Vi, action: SearchFocusPrevious   }
+  - { key: Return,                mode: Search, action: SearchFocusNext       }
+  - { key: Return, mods: Shift,   mode: Search, action: SearchFocusPrevious   }
+  # - { key: Return,                mode: Vi, action: SearchFocusNext       }
+  # - { key: Return, mods: Shift,   mode: Vi, action: SearchFocusPrevious   }
   # (macOS only)
   - { key: Left,     mods: Alt,     chars: "\x1bb"                       } # Skip word left
   - { key: Right,    mods: Alt,     chars: "\x1bf"                       } # Skip word right
@@ -207,8 +211,10 @@ key_bindings:
   - { key: Right,    mods: Command, chars: "\x1bOF",   mode: AppCursor   } # End
   - { key: Back,     mods: Command, chars: "\x15"                        } # Delete line
   - { key: Back,     mods: Alt,     chars: "\x1b\x7f"                    } # Delete word
-  - { key: K,              mods: Command, mode: ~Vi|~Search, chars: "\x0c"                 }
-  - { key: K,              mods: Command, mode: ~Vi|~Search, action: ClearHistory          }
+  - { key: K,              mods: Command, mode: ~Vi, chars: "\x0c"                 }
+  - { key: K,              mods: Command, mode: ~Vi, action: ClearHistory          }
+  - { key: K,              mods: Command, mode: ~Search, chars: "\x0c"                 }
+  - { key: K,              mods: Command, mode: ~Search, action: ClearHistory          }
   - { key: Key0,           mods: Command,                    action: ResetFontSize         }
   - { key: Equals,         mods: Command,                    action: IncreaseFontSize      }
   - { key: Plus,           mods: Command,                    action: IncreaseFontSize      }
@@ -217,9 +223,11 @@ key_bindings:
   - { key: NumpadSubtract, mods: Command,                    action: DecreaseFontSize      }
   - { key: V,              mods: Command,                    action: Paste                 }
   - { key: C,              mods: Command,                    action: Copy                  }
-  - { key: C,              mods: Command, mode: Vi|~Search,  action: ClearSelection        }
+  - { key: C,              mods: Command, mode: Search,  action: ClearSelection        }
+  - { key: C,              mods: Command, mode: Vi,  action: ClearSelection        }
   - { key: H,              mods: Command,                    action: Hide                  }
-  - { key: H,              mods: Command|Alt,                action: HideOtherApplications }
+  # - { key: H,              mods: Command|Alt,                action: HideOtherApplications }
+  # - { key: H,              mods: Command|Alt,                action: HideOtherApplications }
   - { key: M,              mods: Command,                    action: Minimize              }
   - { key: Q,              mods: Command,                    action: Quit                  }
   - { key: W,              mods: Command,                    action: Quit                  }

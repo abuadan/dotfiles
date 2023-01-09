@@ -3,9 +3,13 @@
 set +e
 
 
-DIR="$(dirname "$0")"
+############ Source files to help provide   ############
+############ better echo and path to config ############
+############ files repo                     ############
 
-. "$DIR/utils/pretty_echo.sh" --source-only
-. "$DIR/utils/dotfiles_home.sh" --source-only
+DIR="$( cd -- "$(dirname "$0")" || exit >/dev/null 2>&1 ; pwd -P )"
 
-find -H "$DOTFILES" -maxdepth 3 -name '*.symlink'
+. "$DIR/../utils/pretty_echo.sh" --source-only
+. "$DIR/../utils/dotfiles_home.sh" --source-only
+
+echo "$(find -H "$DOTFILES" -maxdepth 3 -name '*.symlink')"

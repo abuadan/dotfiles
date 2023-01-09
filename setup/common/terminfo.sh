@@ -7,14 +7,13 @@ set +e
 ############ better echo and path to config ############
 ############ files repo                     ############
 
-SCRIPT=$(realpath -s "$0")
-DIR=$(dirname "$SCRIPT")
-# DIR="$( cd -- "$(dirname "$0")" || exit >/dev/null 2>&1 ; pwd -P )"
+DIR="$( cd -- "$(dirname "$0")" || exit >/dev/null 2>&1 ; pwd -P )"
 
 . "$DIR/../utils/pretty_echo.sh" --source-only
 . "$DIR/../utils/dotfiles_home.sh" --source-only
 
 title "Configuring terminfo"
+title "$DOTFILES"
 
 info "adding tmux.terminfo"
 tic -x "$DOTFILES/resources/tmux.terminfo"

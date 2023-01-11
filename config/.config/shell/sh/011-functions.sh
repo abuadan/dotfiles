@@ -56,10 +56,10 @@ function cmake() {
   fi
 
   (
-    rootdir="$(git rev-parse --show-toplevel 2>/dev/null)" && cd "$rootdir"
+    rootdir="$(git rev-parse --show-toplevel 2>/dev/null)" && cd "$rootdir" || exit
 
     "$verbose" && count=$(tput cols) && printf "%${count}s\n" | tr ' ' '-'
-    "$verbose" && echo "env cmake . -Bbuild ${generate_args[@]}"
+    "$verbose" && echo "env cmake . -Bbuild" "${generate_args[@]}"
     "$verbose" && count=$(tput cols) && printf "%${count}s\n" | tr ' ' '-'
 
     env cmake . -Bbuild "${generate_args[@]}"
@@ -75,34 +75,34 @@ function cmake() {
 }
 
 function crun() {
-  [ -z $(git root) ] &>/dev/null && echo "could not find the git directory" && return 1
+  [ -z "$(git root)" ] &>/dev/null && echo "could not find the git directory" && return 1
   (
-    cd $(git root) &>/dev/null # change the directory to root of the git directory
+    cd "$(git root)" &>/dev/null || exit # change the directory to root of the git directory
     [[ -d "./build" ]] || {
       echo "build directory not found"
       return 1
     }
 
     process() {
-      echo "Running $(basename $1)"
+      echo "Running $(basename "$1")"
       count=$(tput cols) && printf "%${count}s\n" | tr ' ' '-'
       $1
       [ $? -ne 0 ] && return $?
       count=$(tput cols) && printf "%${count}s\n" | tr ' ' '-'
-      echo "$(basename $1) - Finished"
+      echo "$(basename "$1") - Finished"
     }
 
-    [[ -z $(find --version 2>/dev/null) ]] && exec_flag+=("-perm" "+111")
-    [[ -z $(find --version 2>/dev/null) ]] || exec_flag+=("-executable")
+    [[ -z $(find . --version 2>/dev/null) ]] && exec_flag+=("-perm" "+111")
+    [[ -z $(find . --version 2>/dev/null) ]] || exec_flag+=("-executable")
 
-    find build -type f -not -path "*CMakeFiles*" ${exec_flag[@]} -print | while read line; do
-      process $line
+    find build -type f -not -path "*CMakeFiles*" "${exec_flag[@]}" -print | while read -r line; do
+      process "$line"
     done
   )
 }
 
 function dirsize() {
-  du -ah --max-depth=1 ${1:-.} | sort -hr
+  du -ah --max-depth=1 "${1:-.}" | sort -hr
 }
 
 function extract() {
@@ -112,7 +112,7 @@ function extract() {
     echo "       extract <path/file.ext> [path/file_2.ext] [path/file_2.ext]"
     return 1
   else
-    for n in $@; do
+    for n in "$@"; do
       if [ -f "$n" ]; then
         case "${n%,}" in
           *tar.gz | *tar.xz | *.tar) tar xvf ./"$n" ;;
@@ -151,7 +151,7 @@ function git() {
     local _out=$1
 
     function cmd_or_default() { # cmd
-      hash $1 2>/dev/null && eval "$_out=\$1" || eval "$_out=git"
+      hash "$1" 2>/dev/null && eval "$_out=\$1" || eval "$_out=git"
     }
 
     local remote=$(command git ls-remote --get-url 2>/dev/null)
@@ -194,7 +194,7 @@ function git() {
 
     # cd and exec arguments if there are any
     if [ $# -eq 0 ]; then
-      cd "$root"
+      cd "$root" || exit
     else
       (cd "$root" && eval "$@")
     fi
@@ -208,35 +208,35 @@ function git() {
 
 function history() {
   local DEFAULT=100
-  builtin history ${1:-$DEFAULT}
+  builtin history "${1:-$DEFAULT}"
 }
 
 # Make a directory and cd into it
 function mkcd() {
   mkdir -p -- "$1"
-  cd -- "$1"
+  cd -- "$1" || exit
 }
 
 function p4() {
   if [[ $1 == 'connect' ]]; then
-    command echo $(
-      read -s
-      echo $REPLY
-    ) | command p4 login
+    command echo "$(
+      read -r -s
+      echo "$REPLY"
+    )" | command p4 login
   elif [[ $1 == 'log' ]]; then
-    command p4 changes -l -t ${@:2} | less
+    command p4 changes -l -t "${@:2}" | less
   elif [[ $1 == 'branch' ]]; then
     command p4 info | grep ^Client\ stream
   elif [[ $1 == 'diff' ]]; then
-    command p4 diff -du ${@:2} | vimpager
+    command p4 diff -du "${@:2}" | vimpager
   elif [[ $1 == 'fast' ]]; then
     command p4 sync --parallel=threads=4,batch=8,batchsize=534288,min=1,minsize=589824 "${@:2}"
   elif [[ $1 == 'pdiff' ]]; then
-    command p4-pdiff ${@:2}
+    command p4-pdiff "${@:2}"
   elif [[ $1 == 'dirty' ]]; then
-    command p4-dirty ${@:2}
+    command p4-dirty "${@:2}"
   else
-    command p4 $*
+    command p4 "$*"
   fi
 }
 
@@ -264,7 +264,7 @@ regmv() {
 }
 
 function rgl() {
-  rg --color always -n $@ | less
+  rg --color always -n "$@" | less
 }
 
 # function tmux()
@@ -343,19 +343,18 @@ function vscode-update-install() {
   local output_file=$HOME/.config/code/install-extensions.sh
 
   # clear output file
-  echo "#!/usr/bin/env bash" >$output_file
-  echo "" >>$output_file
+  echo "#!/usr/bin/env bash" >"$output_file"
+  echo "" >>"$output_file"
 
   # populate extension list
-  echo "extension_list=(" >>$output_file
+  echo "extension_list=(" >>"$output_file"
   local ext_list=($(code --list-extensions))
-  for ext in ${ext_list[@]}; do
-    echo "    $ext" >>$output_file
+  for ext in "${ext_list[@]}"; do
+    echo "    $ext" >>"$output_file"
   done
-  echo ")" >>$output_file
-  echo "" >>$output_file
+  { echo ")"; echo ""; } >>"$output_file"
 
-  cat >>$output_file <<EOF
+  cat >>"$output_file" <<EOF
 function main()
 {
     local current_ext_list=(\$(code --list-extensions))

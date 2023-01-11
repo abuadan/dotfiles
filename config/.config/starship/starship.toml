@@ -6,7 +6,7 @@ add_newline = false
 
 # Define order to make prompt on one line
 format = """
-[](#9A348E)\
+[](#0fb84f)\
 $os\
 $username\
 $hostname\
@@ -55,7 +55,7 @@ format = " took [$duration]($style)"
 # and use the os module below
 [username]
 show_always = true
-style_user = "bg:#9A348E"
+style_user = "bg:#0a8a3a"
 style_root = "bg:#9A348E"
 format = '[$user ]($style)'
 disabled = false

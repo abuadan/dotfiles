@@ -21,6 +21,7 @@
 
 [[ -x "$(command -v wt)" ]] && eval "$(wt source)"
 
+[[ -n "$(command fuck)" ]] &&  eval "$(thefuck --alias)"
 
 [[ -x "$(command -v nvm)" ]] && {
 	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm

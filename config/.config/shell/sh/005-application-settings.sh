@@ -1,34 +1,72 @@
 #!/usr/bin/env bash
 
-# if sccache is installed add that as a rustc wrapper
-[[ -x "$(command -v sccache)" ]] && {
-    # export RUSTC_WRAPPER="sccache"
+if test "$(command -v sscache)"; then
+    export RUSTC_WRAPPER="sccache"
     export SCCACHE_DIR="$HOME/.cache/sccache"
-}
+fi
 
-# if zoxide is insatlled then source helper scripts
-[[ -x "$(command -v zoxide)" ]] && {
+if test "$(command -v zoxide)"; then
     export _ZO_DATA="$HOME/.cache/zoxide/data"
     mkdir -p "$HOME/.cache/zoxide"
-}
+fi
 
-# if git-delta is installed then use this as the git pager
-[[ -n "$(command -v delta)" ]] && {
-    export GIT_PAGER="delta --dark"
-} || {
-    export GIT_PAGER="less"
-}
+# if test "$(command -v delta)"; then
+#     export GIT_PAGER="delta --dark"
+# else
+#     export GIT_PAGER="less"
+# fi
 
-[[ -x "$(command -v wt)" ]] && eval "$(wt source)"
+if test "$(command -v wt)"; then
+    eval "$(wt source)"
+fi
 
-[[ -n "$(command fuck)" ]] &&  eval "$(thefuck --alias)"
+# if test "$(command -v fuck)"; then
+#     eval "$(thefuck --alias)"
+# fi
 
-[[ -x "$(command -v nvm)" ]] && {
-	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-}
+# if test "$(command -v pyenv)"; then
+#     eval "$(pyenv init -)"
+#     eval "$(pyenv virtualenv-init -)"
+# fi
 
-[[ -x "$(command -v pyenv)" ]] && {
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-}
+# if test "$(command -v nvm)"; then
+#     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# 	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# fi
+
+# # if sccache is installed add that as a rustc wrapper
+# if [ -x "$(command -v sccache)" ]; then
+#     # export RUSTC_WRAPPER="sccache"
+#     export SCCACHE_DIR="$HOME/.cache/sccache"
+# fi
+
+# # if zoxide is insatlled then source helper scripts
+# if [ -x "$(command -v zoxide)" ]; then 
+#     export _ZO_DATA="$HOME/.cache/zoxide/data"
+#     mkdir -p "$HOME/.cache/zoxide"
+# fi
+
+# # if git-delta is installed then use this as the git pager
+# if [ -n "$(command -v delta)" ]; then 
+#     export GIT_PAGER="delta --dark"
+# else
+#     export GIT_PAGER="less"
+# fi
+
+# if [ -x "$(command -v wt)" ]; then 
+#     eval "$(wt source)"
+# fi 
+
+# if [ -x "$(command fuck)" ]; then 
+#  eval "$(thefuck --alias)"
+# fi
+
+# if [ -x "$(command -v nvm)" ]; then
+# 	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# 	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# fi
+
+# if [ -x "$(command -v pyenv)" ]; then 
+#     eval "$(pyenv init -)"
+#     eval "$(pyenv virtualenv-init -)"
+# fi

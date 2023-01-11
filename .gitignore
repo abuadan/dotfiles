@@ -1,4 +1,6 @@
 *.DS_Store
-./gh/hosts.yml
-./config/.config/zsh/.*zcomp*
-./config/.config/tmux/plugins/*
+/config/.config/gh/hosts.yml
+/config/.config/zsh/.*zcomp*
+/config/.config/zsh/.zsh_sessions/*
+/config/.config/zsh/.zsh_history
+/config/.config/tmux/plugins/*

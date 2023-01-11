@@ -1,4 +1,5 @@
-#
+#!/usr/bin/env bash
+
 # Prompt config
 #
 export PROMPT_DIR_COLOR=$CL_CYAN

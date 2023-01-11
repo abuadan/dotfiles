@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # For wsl2 to access yubikey from windows
 # https://github.com/BlackReloaded/wsl2-ssh-pageant
 # Note: This has been archived. I made a fork just to be safe

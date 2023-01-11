@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 if tput setaf 1 &> /dev/null; then
     CL_RED="$(tput setaf 1)"
     CL_GREEN="$(tput setaf 2)"

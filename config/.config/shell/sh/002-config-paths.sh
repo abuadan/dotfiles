@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # repo config path defineds
 export REPO_CONFIG_PATH="$XDG_CONFIG_HOME/repo"
 export REPO_LOCAL_PATH="$HOME/.local/share/repo"
@@ -10,3 +12,6 @@ export REPO_LOCAL_PATH="$HOME/.local/share/repo"
 export YADM_DIR="$XDG_CONFIG_HOME/yadm"
 
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+
+export PYENV_ROOT="$HOME/.config/pyenv"
+

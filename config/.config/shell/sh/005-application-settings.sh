@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # if sccache is installed add that as a rustc wrapper
 [[ -x "$(command -v sccache)" ]] && {
     # export RUSTC_WRAPPER="sccache"
@@ -7,7 +9,7 @@
 # if zoxide is insatlled then source helper scripts
 [[ -x "$(command -v zoxide)" ]] && {
     export _ZO_DATA="$HOME/.cache/zoxide/data"
-    mkdir -p $HOME/.cache/zoxide
+    mkdir -p "$HOME/.cache/zoxide"
 }
 
 # if git-delta is installed then use this as the git pager
@@ -18,3 +20,14 @@
 }
 
 [[ -x "$(command -v wt)" ]] && eval "$(wt source)"
+
+
+[[ -x "$(command -v nvm)" ]] && {
+	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+}
+
+[[ -x "$(command -v pyenv)" ]] && {
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+}

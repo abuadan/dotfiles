@@ -26,3 +26,4 @@
 [[ -f "$HOME"/.local/share/bash/bashrc ]] && . "$HOME"/.local/share/bash/bashrc
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+. "$HOME/.cargo/env"

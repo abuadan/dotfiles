@@ -35,5 +35,11 @@ export LESS_TERMCAP_us=$'\E[04;38;5;111m'
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/sbin:$PATH"
+######################## FLAGS ########################
+# Compilation flags
+export LDFLAGS="-L/opt/homebrew/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+export CC=gcc
+export ARCHFLAGS="-arch arm64"
+export CXX=clang
+

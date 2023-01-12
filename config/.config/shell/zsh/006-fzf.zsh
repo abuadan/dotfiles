@@ -1,4 +1,4 @@
-
+export FZF_BASE="/opt/homebrew/bin/fzf"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Use fd (https://github.com/sharkdp/fd) instead of the default find

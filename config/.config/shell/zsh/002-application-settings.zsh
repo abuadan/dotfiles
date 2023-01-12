@@ -7,3 +7,15 @@
 [[ -x "$(command -v zoxide)" ]] && {
     eval "$(zoxide init zsh)"
 }
+
+[[ -x "$(command -v fuck)" ]] & {
+	eval "$(thefuck --alias)"
+}
+
+[[ -x "$(command -v pyenv)" ]] && {
+	export PATH="$PYENV_ROOT/bin:$PATH"
+    	eval "$(pyenv init - && pyenv virtualenv-init -)"
+}
+
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

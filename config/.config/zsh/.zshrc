@@ -8,10 +8,19 @@
 # ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
 #
 
+# top of your .zshrc file
+# To help profile slow startup time
+# zmodload zsh/zprof
+
 export PROMPT="pk10"
 
+# Generate zcompdump once a day
 autoload -Uz compinit
-compinit
+for dump in $ZDOTDIR/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
+
 
 if [ -d $HOME/.config/shell/sh ]; then
     for rc in $HOME/.config/shell/sh/*.sh; do
@@ -112,10 +121,11 @@ source $ZSH/oh-my-zsh.sh
 
 # override some the default alias form ohmyzsh
 source $HOME/.config/shell/sh/004-aliases.sh
+
 #You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# zprof

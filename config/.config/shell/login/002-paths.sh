@@ -30,8 +30,16 @@ function main() {
   }
 
   append_path "$HOME/.config/git/bin"
+  append_path "$HOME/.config/fzf/bin"
+  append_path "$HOME/.local/share/bin"
   append_path "$HOME/.local/share/cargo/bin"
   append_path "$HOME/.cargo/bin"
+  append_path "$HOME/.local/share/poetry/bin"
+
+  # this is a bit annoying since brew is not in the path yet
+  # so we need to use full path
+  append_path "/opt/homebrew/bin"
+  append_path "/opt/homebrew/sbin"
 
   # adding system path back
   # Ending solution from https://stackoverflow.com/a/15988793

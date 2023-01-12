@@ -3,10 +3,11 @@
 # directories
 alias ..='cd ..'
 alias cd..='cd ..'
+alias ~="cd ~"
 
 # quick shortcuts
 alias c=cargo
-alias e=$EDITOR
+alias e='$EDITOR'
 alias g=git
 alias j=just
 alias m=make
@@ -43,17 +44,17 @@ alias gs="git status -s"
 # if exa is installed use that for ls
 if test "$(command -v exa)"; then
   alias l="exa --group-directories-first --icons --color=auto --git -an"
-  alias ls="exa --group-directories-first --icons --color=auto --git -lan"
+  alias ls="exa --group-directories-first --icons --color=always --git -lan --header"
   alias ll="exa --group-directories-first --icons --color=auto --git -lan"
   alias lll="exa --group-directories-first --icons --color=auto --git -ln"
 else
   # have to check if we are on a bsd system (cough, cough... mac) as
   # it does not have color mode because of course...
    [[ -n "$(command ls --color=auto)" ]] && ls_color='--color=always --group-directories-first'
-   alias l="ls -ahCF $ls_color"
-   alias ls="ls -hCFG $ls_color"
-   alias ll="ls -alh $ls_color"
-   alias lll="ls -lh $ls_color"
+   alias l='ls -ahCF $ls_color'
+   alias ls='ls -hCFG $ls_color'
+   alias ll='ls -alh $ls_color'
+   alias lll='ls -lh $ls_color'
    unset ls_color
 fi
 
@@ -62,3 +63,11 @@ fi
   alias pacman="sudo pacman --color auto"
   alias paclist="comm -23 <(pacman -Qqett | sort) <(pacman -Qqg -g base-devel | sort | uniq)"
 }
+
+########################## FZF ALIAS ##########################
+alias fzfs="fzf --preview 'bat --style numbers,changes --color=always {} | head -500'"
+alias rgf="rg --files --hidden | fzf --preview 'bat --style numbers,changes --color=always {} | head -500'"
+
+########################## TMUX ALIAS ##########################
+alias tls="tmux ls"
+alias ta="tmux attach-session -t"

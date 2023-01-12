@@ -13,6 +13,7 @@ ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
 PLUGINS=(
 "zsh-syntax-highlighting|https://github.com/zsh-users/zsh-syntax-highlighting.git"
 "zsh-autosuggestions|https://github.com/zsh-users/zsh-autosuggestions.git"
+"zsh-completions|https://github.com/zsh-users/zsh-completions"
 )
 # Install plugins
 for plugin in "${PLUGINS[@]}"

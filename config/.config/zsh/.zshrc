@@ -8,8 +8,8 @@
 # ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
 #
 
-# top of your .zshrc file
-# To help profile slow startup time
+# unccoment line to help profile slow startup time
+# keep at the top of .zshrc file
 # zmodload zsh/zprof
 
 export PROMPT="pk10"
@@ -116,7 +116,9 @@ export ZSH_CUSTOM=$ZSH/custom
 # Add wisely, as too many plugins slow down shell startup.
 
 # --- Plugins
-plugins=(git sudo zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git sudo zsh-syntax-highlighting zsh-autosuggestions zsh-nvm)
+fpath+=${ZSH_CUSTOM}/plugins/zsh-completions/src
+
 source $ZSH/oh-my-zsh.sh
 
 # override some the default alias form ohmyzsh

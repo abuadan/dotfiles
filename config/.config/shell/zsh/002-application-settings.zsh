@@ -3,14 +3,14 @@
     [ -x "$(command -v fzf)" ] && eval "$(repo init zsh --fzf)" || eval "$(repo init zsh)"
 }
 
-# if zoxide is insatlled then source helper scripts
+# if zoxide is installed then source helper scripts
 [[ -x "$(command -v zoxide)" ]] && {
     eval "$(zoxide init zsh)"
 }
 
-[[ -x "$(command -v fuck)" ]] & {
-	eval "$(thefuck --alias)"
-}
+# [[ -x "$(command -v fuck)" ]] & {
+# 	eval "$(thefuck --alias)"
+# }
 
 [[ -x "$(command -v pyenv)" ]] && {
 	export PATH="$PYENV_ROOT/bin:$PATH"

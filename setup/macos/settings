@@ -71,7 +71,10 @@ info "Finder: show all filename extensions"
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 info "show hidden files by default"
-defaults write com.apple.Finder AppleShowAllFiles -bool true
+defaults write com.apple.Finder AppleShowAllFiles -bool false
+
+# set system limit to be higher than default
+ulimit 1024
 
 info "show the ~/Library folder in Finder"
 chflags nohidden ~/Library

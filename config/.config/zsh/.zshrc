@@ -122,12 +122,13 @@ fpath+=${ZSH_CUSTOM}/plugins/zsh-completions/src
 source $ZSH/oh-my-zsh.sh
 
 # override some the default alias form ohmyzsh
-source $HOME/.config/shell/sh/004-aliases.sh
+source $XDG_CONFIG_HOME/shell/sh/004-aliases.sh
 
 #You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+[[ ! -f ~/.fzf.zsh ]] || source ~/.fzf.zsh
 
 # zprof

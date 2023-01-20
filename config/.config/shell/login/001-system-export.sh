@@ -40,8 +40,15 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 ######################## FLAGS ########################
 # Compilation flags
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
+LDFLAGS+="-I/opt/homebrew/opt/openssl/include"
+LDFLAGS+="-L/opt/homebrew/opt/openssl/lib"
+
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+# Some system exports requrie gcc-11 from homebrew which lives at /opt/homebrew/bin/gcc-11
+# whilst other require gcc-12
 export CC=gcc
 export ARCHFLAGS="-arch arm64"
 export CXX=clang
-
+export GRPC_PYTHON_BUILD_SYSTEM_RE2=true
+export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=true
+export GRPC_BUILD_WITH_BORING_SSL_ASM="" pip

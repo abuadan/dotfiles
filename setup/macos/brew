@@ -12,7 +12,7 @@ info "checking if brew binary is present."
 
 if test ! "$(command -v brew)"; then
 	warning "brew binary not found, installing brew;"
-	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 info "brew installed, setting up packages and casks"

@@ -1,0 +1,99 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Don't print a new line at the start of the prompt
+add_newline = false
+
+# Define order to make prompt on one line
+# https://starship.rs/config/#default-prompt-order
+format = """
+$username\
+$hostname\
+$shlvl\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$hg_branch\
+$docker_context\
+$nix_shell\
+$status\
+$character\
+"""
+
+# Change timeout of scanning files to 10 mili secs
+scan_timeout = 10
+
+[python]
+symbol = '🐍'
+pyenv_version_name = true
+
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[➜](bold red)"
+vicmd_symbol = "[V](bold blue)"
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "bold cyan"
+
+
+[git_branch]
+style = "bold yellow"
+
+[git_state]
+format = "[\\($state($progress_current of $progress_total)\\)]($style)"
+cherry_pick = "[🍒 PICKING](bold red)"
+
+[git_status]
+format = '([\[$ahead_behind\]]($style) )'
+style = "bold blue"
+ahead = "⇡${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+behind = "⇣${count}"
+
+[nix_shell]
+symbol = ""
+impure_msg = "[](red)"
+pure_msg = "[](green)"
+format = 'via [$symbol \($name\)](bold blue) '
+
+# https://github.com/starship/starship/discussions/1252#discussioncomment-194627
+# https://github.com/starship/starship/discussions/1252#discussioncomment-838901
+[custom.giturl]
+description = "Display symbol for remote Git server"
+command = """
+GIT_REMOTE=$(command git ls-remote --get-url 2> /dev/null)
+if [[ "$GIT_REMOTE" =~ "github" ]]; then
+    GIT_REMOTE_SYMBOL=" "
+elif [[ "$GIT_REMOTE" =~ "gitlab" ]]; then
+    GIT_REMOTE_SYMBOL=" "
+elif [[ "$GIT_REMOTE" =~ "bitbucket" ]]; then
+    GIT_REMOTE_SYMBOL=" "
+elif [[ "$GIT_REMOTE" =~ "git" ]]; then
+    GIT_REMOTE_SYMBOL=" "
+else
+    GIT_REMOTE_SYMBOL=" "
+fi
+printf "$GIT_REMOTE_SYMBOL"
+"""
+when = 'git rev-parse --is-inside-work-tree 2> /dev/null'
+shell = ["bash", "--noprofile", "--norc"]
+format = "at $output  "
+
+# https://github.com/starship/starship/discussions/1252#discussioncomment-502146
+[custom.lastcommit]
+description = "Display last commit hash and message"
+command = "git show -s --format='%h \"%s\"'"
+when = 'git rev-parse --is-inside-work-tree 2> /dev/null'
+style = "bright-yellow bold"
+format = "[$output]($style) "
+
+# https://github.com/starship/starship/discussions/1252#discussioncomment-481286
+[custom.git_email]
+command = "git config user.email"
+when = "git rev-parse --git-dir 2> /dev/null"
+format = "by [$output]($style) "
+style = "bright-yellow bold"

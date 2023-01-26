@@ -2,8 +2,10 @@
 
 set +e
 
-SCRIPT=$(realpath -s "$0")
-DIR=$(dirname "$SCRIPT")
+# SCRIPT=$(realpath -s "$1")
+# DIR=$(dirname "$SCRIPT")
+
+DIR="$( cd -- "$(dirname "$0")" || exit >/dev/null 2>&1 ; pwd -P )"
 . "$DIR/../utils/pretty_echo.sh" --source-only
 
 title "Configuring macOS"
@@ -71,6 +73,9 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 info "show hidden files by default"
 defaults write com.apple.Finder AppleShowAllFiles -bool false
 
+# set system limit to be higher than default
+ulimit 1024
+
 info "show the ~/Library folder in Finder"
 chflags nohidden ~/Library
 
@@ -92,7 +97,7 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 info "Disable press-and-hold for keys in favor of key repcat"
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
-ifno "Avoid creating .DS_Store files on network or USB volumes"
+info "Avoid creating .DS_Store files on network or USB volumes"
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 

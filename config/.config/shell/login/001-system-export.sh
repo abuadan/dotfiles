@@ -8,11 +8,11 @@ export GPG_TTY="$(tty)"
 
 # editor and vim
 [[ -n "$(command -v nvim)" ]] && [[ "$OSTYPE" != 'msys' || -n $IS_ALACRITTY ]] && {
-    export EDITOR='nvim'
-    export VISUAL='nvim'
+	export EDITOR='nvim'
+	export VISUAL='nvim'
 } || {
-    export EDITOR="vim"
-    export VISUAL="vim"
+	export EDITOR="vim"
+	export VISUAL="vim"
 }
 
 # filename (if known), line number if known, falling back to percent if known,
@@ -40,9 +40,9 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 ######################## FLAGS ########################
 # Compilation flags
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
+LDFLAGS+="-L/opt/homebrew/opt/llvm/lib/c++ -Wl,-rpath,/opt/homebrew/opt/llvm/lib/c++"
 LDFLAGS+="-I/opt/homebrew/opt/openssl/include"
 LDFLAGS+="-L/opt/homebrew/opt/openssl/lib"
-
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 # Some system exports requrie gcc-11 from homebrew which lives at /opt/homebrew/bin/gcc-11
 # whilst other require gcc-12

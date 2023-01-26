@@ -1,6 +1,12 @@
 *.DS_Store
 /config/.config/gh/hosts.yml
 /config/.config/zsh/.*zcomp*
+/config/.config/zsh/.*zcomp*.
 /config/.config/zsh/.zsh_sessions/*
+*/.zsh_sessions/
 /config/.config/zsh/.zsh_history
 /config/.config/tmux/plugins/*
+/.vscode/
+/.idea/
+*/.idea/*
+/.pytest_cache/

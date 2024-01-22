@@ -42,26 +42,26 @@ alias gs="git status -s"
 [[ $SHELL =~ /zsh$ ]] && alias src='source $HOME/.config/zsh/.zshrc'
 
 # if exa is installed use that for ls
-if test "$(command -v exa)"; then
-  alias l="exa --group-directories-first --icons --color=auto --git -an"
-  alias ls="exa --group-directories-first --icons --color=always --git -lan --header"
-  alias ll="exa --group-directories-first --icons --color=auto --git -lan"
-  alias lll="exa --group-directories-first --icons --color=auto --git -ln"
+if test "$(command -v eza)"; then
+	alias l="eza --group-directories-first --icons --color=auto --git -an"
+	alias ls="eza --group-directories-first --icons --color=always --git -lan --header"
+	alias ll="eza --group-directories-first --icons --color=auto --git -lan"
+	alias lll="eza --group-directories-first --icons --color=auto --git -ln"
 else
-  # have to check if we are on a bsd system (cough, cough... mac) as
-  # it does not have color mode because of course...
-   [[ -n "$(command ls --color=auto)" ]] && ls_color='--color=always --group-directories-first'
-   alias l='ls -ahCF $ls_color'
-   alias ls='ls -hCFG $ls_color'
-   alias ll='ls -alh $ls_color'
-   alias lll='ls -lh $ls_color'
-   unset ls_color
+	# have to check if we are on a bsd system (cough, cough... mac) as
+	# it does not have color mode because of course...
+	[[ -n "$(command ls --color=auto)" ]] && ls_color='--color=always --group-directories-first'
+	alias l='ls -ahCF $ls_color'
+	alias ls='ls -hCFG $ls_color'
+	alias ll='ls -alh $ls_color'
+	alias lll='ls -lh $ls_color'
+	unset ls_color
 fi
 
 [[ -x "$(command -v pacman)" ]] && {
-  alias mirror='sudo reflector --protocol https --latest 50 --number 20 --sort rate --save /etc/pacman.d/mirrorlist'
-  alias pacman="sudo pacman --color auto"
-  alias paclist="comm -23 <(pacman -Qqett | sort) <(pacman -Qqg -g base-devel | sort | uniq)"
+	alias mirror='sudo reflector --protocol https --latest 50 --number 20 --sort rate --save /etc/pacman.d/mirrorlist'
+	alias pacman="sudo pacman --color auto"
+	alias paclist="comm -23 <(pacman -Qqett | sort) <(pacman -Qqg -g base-devel | sort | uniq)"
 }
 
 ########################## FZF ALIAS ##########################

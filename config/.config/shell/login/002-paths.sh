@@ -29,12 +29,12 @@ function main() {
 		done
 	}
 
-	append_path "$HOME/.config/git/bin"
-	append_path "$HOME/.config/fzf/bin"
-	append_path "$HOME/.local/share/bin"
-	append_path "$HOME/.local/share/cargo/bin"
-	append_path "$HOME/.cargo/bin"
-	append_path "$HOME/.local/share/poetry/bin"
+	append_path "$XDG_CONFIG_HOME/git/bin"
+	append_path "$XDG_CONFIG_HOME/fzf/bin"
+	append_path "$XDG_DATA_HOME/bin"
+	append_path "$XDG_DATA_HOME/cargo/bin"
+	append_path "$XDG_DATA_HOME/.cargo/bin"
+	append_path "$XDG_DATA_HOME/poetry/bin"
 
 	# this is a bit annoying since brew is not in the path yet
 	# so we need to use full path

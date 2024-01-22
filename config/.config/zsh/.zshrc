@@ -22,6 +22,12 @@ done
 compinit -C
 
 
+if [ -d $HOME/.config/shell/login ]; then
+    for rc in $HOME/.config/shell/login/*.sh; do
+        emulate bash -c ". $rc"
+    done
+fi
+
 if [ -d $HOME/.config/shell/sh ]; then
     for rc in $HOME/.config/shell/sh/*.sh; do
         emulate bash -c ". $rc"

@@ -15,6 +15,12 @@
 export PROMPT="pk10"
 
 # Generate zcompdump once a day
+if type brew &>/dev/null; then
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+    autoload -Uz compinit
+    compinit
+fi
+
 autoload -Uz compinit
 for dump in $ZDOTDIR/.zcompdump(N.mh+24); do
   compinit
@@ -123,6 +129,8 @@ export ZSH_CUSTOM=$ZSH/custom
 
 # --- Plugins
 plugins=(git sudo zsh-syntax-highlighting zsh-autosuggestions zsh-nvm)
+
+# export fpath=(${HOMEBREW_PREFIX}/share/zsh-completions $fpath)
 fpath+=${ZSH_CUSTOM}/plugins/zsh-completions/src
 
 source $ZSH/oh-my-zsh.sh

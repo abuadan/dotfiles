@@ -16,6 +16,7 @@ cask "font-fira-code"
 cask "font-jetbrains-mono"
 cask "font-cascadia-mono"
 cask "font-3270-nerd-font"
+
 # packages
 brew "bat" # better cat
 brew "cloc" # lines of code counter
@@ -31,6 +32,7 @@ brew "highlight" # code syntax highlighting
 brew "htop" # a top alternative
 brew "jq" # work with JSON files in shell scripts
 brew "neofetch" # pretty system info
+brew "gnu-sed"
 brew "neovim" # A better vim
 brew "python" # python (latest)
 brew "ripgrep" # very fast file searcher
@@ -46,7 +48,7 @@ brew "zsh" # zsh (latest)
 brew "thefuck"
 brew "pyenv"
 brew "pyenv-virtualenv"
-brew "exa"
+brew "eza"
 brew "glow"
 brew "zstd"
 brew "k9s"

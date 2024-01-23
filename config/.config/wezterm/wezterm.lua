@@ -72,7 +72,7 @@ return {
 
 	-- Color scheme
 	colors = colors,
-	color_scheme_dirs = { "$HOME/.config/wezterm/colors/schemes" },
+	color_scheme_dirs = { "$HOME/.config/wezterm/colors" },
 	-- color_scheme = ""
 	-- https://wezfurlong.org/wezterm/config/appearance.html
 	--

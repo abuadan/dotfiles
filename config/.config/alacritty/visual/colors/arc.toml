@@ -1,0 +1,47 @@
+[colors.bright]
+black = "0x79a9ff"
+blue = "0x94bff3"
+cyan = "0x93e0e3"
+green = "0xc3bf9f"
+magenta = "0xec93d3"
+red = "0xda6e6e"
+white = "0xf8f8ff"
+yellow = "0xf0dfaf"
+
+[colors.normal]
+black = "0x3f3f3f"
+blue = "0x506070"
+cyan = "0x8cd0d3"
+green = "0x60b48a"
+magenta = "0xdc8cc3"
+red = "0xac3c3c"
+white = "0xdcdccc"
+yellow = "0xdfaf8f"
+
+[colors.primary]
+background = "0x3f424a"
+foreground = "0xf8f8f8"
+
+[theme_arc.bright]
+black = "0x79a9ff"
+blue = "0x94bff3"
+cyan = "0x93e0e3"
+green = "0xc3bf9f"
+magenta = "0xec93d3"
+red = "0xda6e6e"
+white = "0xf8f8ff"
+yellow = "0xf0dfaf"
+
+[theme_arc.normal]
+black = "0x3f3f3f"
+blue = "0x506070"
+cyan = "0x8cd0d3"
+green = "0x60b48a"
+magenta = "0xdc8cc3"
+red = "0xac3c3c"
+white = "0xdcdccc"
+yellow = "0xdfaf8f"
+
+[theme_arc.primary]
+background = "0x3f424a"
+foreground = "0xf8f8f8"

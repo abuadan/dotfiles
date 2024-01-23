@@ -1,0 +1,4 @@
+[debug]
+log_level = "Info"
+persistent_logging = false
+render_timer = false

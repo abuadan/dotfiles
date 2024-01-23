@@ -1,0 +1,47 @@
+[colors.bright]
+black = "0x56687e"
+blue = "0x6498ef"
+cyan = "0x24d1e7"
+green = "0x53e2ae"
+magenta = "0x985eff"
+red = "0xee4f84"
+white = "0xe5e5e5"
+yellow = "0xf1ff52"
+
+[colors.normal]
+black = "0x3d4c5f"
+blue = "0x92b6f4"
+cyan = "0x87dfeb"
+green = "0xa1efd3"
+magenta = "0xbd99ff"
+red = "0xf48fb1"
+white = "0xf8f8f2"
+yellow = "0xf1fa8c"
+
+[colors.primary]
+background = "0x323f4e"
+foreground = "0xf8f8f2"
+
+[theme_lovelace.bright]
+black = "0x56687e"
+blue = "0x6498ef"
+cyan = "0x24d1e7"
+green = "0x53e2ae"
+magenta = "0x985eff"
+red = "0xee4f84"
+white = "0xe5e5e5"
+yellow = "0xf1ff52"
+
+[theme_lovelace.normal]
+black = "0x3d4c5f"
+blue = "0x92b6f4"
+cyan = "0x87dfeb"
+green = "0xa1efd3"
+magenta = "0xbd99ff"
+red = "0xf48fb1"
+white = "0xf8f8f2"
+yellow = "0xf1fa8c"
+
+[theme_lovelace.primary]
+background = "0x323f4e"
+foreground = "0xf8f8f2"

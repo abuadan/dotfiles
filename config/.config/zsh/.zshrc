@@ -18,7 +18,11 @@ export PROMPT="pk10"
 if type brew &>/dev/null; then
     FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
     autoload -Uz compinit
-    compinit
+		  if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+			compinit;
+		else
+				compinit -C;
+		fi;
 fi
 
 autoload -Uz compinit
@@ -128,7 +132,7 @@ export ZSH_CUSTOM=$ZSH/custom
 # Add wisely, as too many plugins slow down shell startup.
 
 # --- Plugins
-plugins=(git sudo zsh-syntax-highlighting zsh-autosuggestions zsh-nvm)
+plugins=(git sudo zsh-syntax-highlighting zsh-autosuggestions zsh-autocomplete zsh-nvm bazel colored-man-pages )
 
 # export fpath=(${HOMEBREW_PREFIX}/share/zsh-completions $fpath)
 fpath+=${ZSH_CUSTOM}/plugins/zsh-completions/src

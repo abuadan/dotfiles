@@ -49,16 +49,16 @@ local keys = {
 local font_rules = {
 	{
 		italic = true,
-		font = font_with_fallback("JetBrains Mono Light Italic"),
+		font = font_with_fallback("0xProto Nerd Font"),
 	},
 	{
 		italic = true,
 		intensity = "Bold",
-		font = font_with_fallback("JetBrains Mono Bold Italic"),
+		font = font_with_fallback("0xProto Nerd Font Mono"),
 	},
 	{
 		intensity = "Bold",
-		font = font_with_fallback("JetBrains Mono Bold"),
+		font = font_with_fallback("0xProto Nerd Font Propo"),
 	},
 }
 

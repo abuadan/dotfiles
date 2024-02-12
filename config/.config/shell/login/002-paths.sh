@@ -41,6 +41,7 @@ function main() {
 	append_path "/opt/homebrew/bin"
 	append_path "/opt/homebrew/sbin"
 	append_path "/opt/homebrew/opt/llvm/bin"
+	append_path "/opt/homebrew/opt/openjdk/bin"
 
 	# adding system path back
 	# Ending solution from https://stackoverflow.com/a/15988793

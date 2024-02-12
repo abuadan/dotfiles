@@ -18,6 +18,7 @@ cask "font-cascadia-mono"
 cask "font-3270-nerd-font"
 
 # packages
+brew "java"
 brew "bat" # better cat
 brew "cloc" # lines of code counter
 brew "git-delta" # a better git diff

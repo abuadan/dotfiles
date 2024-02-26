@@ -38,7 +38,7 @@ export LESS_TERMCAP_us=$'\E[04;38;5;111m'
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 
 ################## JAVA ###################
-export JAVA_HOME="$(brew --prefix)/opt/openjdk"
+export JAVA_HOME="/opt/homebrew/opt/openjdk"
 ######################## FLAGS ########################
 # Compilation flags
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"

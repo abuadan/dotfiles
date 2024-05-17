@@ -15,6 +15,16 @@
 export PROMPT="pk10"
 
 # Generate zcompdump once a day
+if type brew &>/dev/null; then
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+    autoload -Uz compinit
+		  if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+			compinit;
+		else
+				compinit -C;
+		fi;
+fi
+
 autoload -Uz compinit
 for dump in $ZDOTDIR/.zcompdump(N.mh+24); do
   compinit
@@ -122,7 +132,9 @@ export ZSH_CUSTOM=$ZSH/custom
 # Add wisely, as too many plugins slow down shell startup.
 
 # --- Plugins
-plugins=(git sudo zsh-syntax-highlighting zsh-autosuggestions zsh-nvm)
+plugins=(git sudo zsh-syntax-highlighting zsh-autosuggestions zsh-autocomplete zsh-nvm bazel colored-man-pages )
+
+# export fpath=(${HOMEBREW_PREFIX}/share/zsh-completions $fpath)
 fpath+=${ZSH_CUSTOM}/plugins/zsh-completions/src
 
 source $ZSH/oh-my-zsh.sh
@@ -138,3 +150,24 @@ export LANG=en_US.UTF-8
 [[ ! -f ~/.fzf.zsh ]] || source ~/.fzf.zsh
 
 # zprof
+#
+#
+# Auto-Complete plugin key bindings
+## Make Tab go straight to the menu and cycle there
+bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
+bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+## Don't show completions if the current word matches a pattern
+zstyle ':autocomplete:*' ignored-input '..##'
+
+## Reset history key bindings to Zsh default
+() {
+   local -a prefix=( '\e'{\[,O} )
+   local -a up=( ${^prefix}A ) down=( ${^prefix}B )
+   local key=
+   for key in $up[@]; do
+      bindkey "$key" up-line-or-history
+   done
+   for key in $down[@]; do
+      bindkey "$key" down-line-or-history
+   done
+}

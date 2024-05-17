@@ -11,7 +11,7 @@ echo "Dotfiles directory; $DOTFILES"
 
 echo "Linking profile files"
 ln -sf "$DOTFILES"/config/.bash_profile "$HOME"/.bash_profile
-ln -sf "$DOTFILES"/config/..bashrc "$HOME"/.bashrc
+ln -sf "$DOTFILES"/config/.bashrc "$HOME"/.bashrc
 ln -sf "$DOTFILES"/config/.profile "$HOME"/.profile
 ln -sf "$DOTFILES"/config/.zshenv "$HOME"/.zshenv
 
@@ -21,3 +21,9 @@ ln -sf "$DOTFILES"/config/.config/zsh/.zlogout "$HOME"/.zlogout
 ln -sf "$DOTFILES"/config/.config/zsh/.zprofile "$HOME"/.zprofile
 ln -sf "$DOTFILES"/config/.config/zsh/.zshrc "$HOME"/.zshrc
 ln -sf "$DOTFILES"/config/.config/zsh/.p10k.zsh "$HOME"/.p10k.zsh
+
+echo "Sourcing zshrc file"
+source "$DOTFILES"/config/.config/zsh/.zshrc
+
+echo "clone tmux plugin manager TPM"
+git clone https://github.com/tmux-plugins/tpm "$XDG_CONFIG_HOME"/tmux/plugins/tpm

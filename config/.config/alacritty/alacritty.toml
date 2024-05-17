@@ -1,0 +1,15 @@
+import = [
+	"~/.config/alacritty/func/debug.toml",
+	"~/.config/alacritty/func/env.toml",
+	"~/.config/alacritty/func/scrolling.toml",
+	"~/.config/alacritty/func/selection.toml",
+	"~/.config/alacritty/func/shell.toml",
+	"~/.config/alacritty/inputs/keybinding.toml",
+	"~/.config/alacritty/inputs/mouse.toml",
+	"~/.config/alacritty/visual/colors.toml",
+	"~/.config/alacritty/visual/cursor.toml",
+	"~/.config/alacritty/visual/font.toml",
+	"~/.config/alacritty/visual/window.toml",
+	# "~/.local/share/alacritty/config.yml",
+]
+live_config_reload = true

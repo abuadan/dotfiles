@@ -1,0 +1,47 @@
+[colors.bright]
+black = "0x38252c"
+blue = "0x289cd5"
+cyan = "0x0a9b81"
+green = "0x76b639"
+magenta = "0xff2491"
+red = "0xff0000"
+white = "0xf8f8f8"
+yellow = "0xe1a126"
+
+[colors.normal]
+black = "0x171717"
+blue = "0x16b1fb"
+cyan = "0x0fdcb6"
+green = "0x97d01a"
+magenta = "0xff2491"
+red = "0xd81765"
+white = "0xebebeb"
+yellow = "0xffa800"
+
+[colors.primary]
+background = "0x1e1e1e"
+foreground = "0xf8f8f8"
+
+[theme_neon.bright]
+black = "0x38252c"
+blue = "0x289cd5"
+cyan = "0x0a9b81"
+green = "0x76b639"
+magenta = "0xff2491"
+red = "0xff0000"
+white = "0xf8f8f8"
+yellow = "0xe1a126"
+
+[theme_neon.normal]
+black = "0x171717"
+blue = "0x16b1fb"
+cyan = "0x0fdcb6"
+green = "0x97d01a"
+magenta = "0xff2491"
+red = "0xd81765"
+white = "0xebebeb"
+yellow = "0xffa800"
+
+[theme_neon.primary]
+background = "0x1e1e1e"
+foreground = "0xf8f8f8"

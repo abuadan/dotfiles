@@ -1,0 +1,47 @@
+[colors.bright]
+black = "0x465463"
+blue = "0x3dbac2"
+cyan = "0x62cdcd"
+green = "0x4bc66d"
+magenta = "0x825ece"
+red = "0xd04e9d"
+white = "0xe0e5e5"
+yellow = "0xdb695b"
+
+[colors.normal]
+black = "0x20262c"
+blue = "0x75dbe1"
+cyan = "0x9ee9ea"
+green = "0x74dd91"
+magenta = "0xb4a1db"
+red = "0xdb86ba"
+white = "0xf1fcf9"
+yellow = "0xe49186"
+
+[colors.primary]
+background = "0x282f37"
+foreground = "0xf1fcf9"
+
+[theme_skyfall.bright]
+black = "0x465463"
+blue = "0x3dbac2"
+cyan = "0x62cdcd"
+green = "0x4bc66d"
+magenta = "0x825ece"
+red = "0xd04e9d"
+white = "0xe0e5e5"
+yellow = "0xdb695b"
+
+[theme_skyfall.normal]
+black = "0x20262c"
+blue = "0x75dbe1"
+cyan = "0x9ee9ea"
+green = "0x74dd91"
+magenta = "0xb4a1db"
+red = "0xdb86ba"
+white = "0xf1fcf9"
+yellow = "0xe49186"
+
+[theme_skyfall.primary]
+background = "0x282f37"
+foreground = "0xf1fcf9"

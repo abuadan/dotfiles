@@ -1,7 +1,3 @@
-# taps
-tap "homebrew/cask"
-tap "homebrew/cask-fonts"
-
 brew "noti" # utility to display notifications from scripts
 brew "trash" # rm, but put in the trash rather than completely delete
 
@@ -16,6 +12,7 @@ cask "font-fira-code"
 cask "font-jetbrains-mono"
 cask "font-cascadia-mono"
 cask "font-3270-nerd-font"
+brw "font-hack-nerd-font"
 
 # packages
 brew "java"

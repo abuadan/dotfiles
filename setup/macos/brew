@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-set +e
+set +ex
 
-SCRIPT=$(realpath -s "$0")
+SCRIPT=$(realpath "$0")
 DIR=$(dirname "$SCRIPT")
 
 . "$DIR/../utils/pretty_echo.sh" --source-only
@@ -12,7 +12,7 @@ info "checking if brew binary is present."
 
 if test ! "$(command -v brew)"; then
 	warning "brew binary not found, installing brew;"
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 info "brew installed, setting up packages and casks"

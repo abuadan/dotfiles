@@ -1,80 +1,20 @@
-[colors.bright]
-black = "#545454"
-blue = "#569cd6"
-cyan = "#56b6c2"
-green = "#608b4e"
-magenta = "#c678dd"
-red = "#f44747"
-white = "#d4d4d4"
-yellow = "#dcdcaa"
+[colors.primary]
+background = '#1F1F1F'
+foreground = '#D4D4D4'
 
 [colors.cursor]
-cursor = "#d4d4d4"
-text = "#d4d4d4"
+text = "#1F1F1F"
+cursor = "#D4D4D4"
 
 [colors.normal]
-black = "#1e1e1e"
-blue = "#569cd6"
-cyan = "#56b6c2"
-green = "#608b4e"
-magenta = "#c678dd"
-red = "#f44747"
-white = "#d4d4d4"
-yellow = "#dcdcaa"
+black = "#1F1F1F"
+red = "#F44747"
+green = "#6A9955"
+yellow = "#795E26"
+blue = "#007ACC"
+magenta = "#C586C0"
+cyan = "#4FC1FF"
+white = "#D4D4D4"
 
-[colors.primary]
-background = "#1e1e1e"
-foreground = "#d4d4d4"
-
-[font]
-size = 14
-
-[font.bold]
-family = "FiraCode Nerd Font"
-
-[font.italic]
-family = "FiraCode Nerd Font"
-
-[font.normal]
-family = "FiraCode Nerd Font"
-style = "Regular"
-
-[theme_vscode_dark.bright]
-black = "#545454"
-blue = "#569cd6"
-cyan = "#56b6c2"
-green = "#608b4e"
-magenta = "#c678dd"
-red = "#f44747"
-white = "#d4d4d4"
-yellow = "#dcdcaa"
-
-[theme_vscode_dark.cursor]
-cursor = "#d4d4d4"
-text = "#d4d4d4"
-
-[theme_vscode_dark.normal]
-black = "#1e1e1e"
-blue = "#569cd6"
-cyan = "#56b6c2"
-green = "#608b4e"
-magenta = "#c678dd"
-red = "#f44747"
-white = "#d4d4d4"
-yellow = "#dcdcaa"
-
-[theme_vscode_dark.primary]
-background = "#1e1e1e"
-foreground = "#d4d4d4"
-
-[window]
-decorations = "full"
-dynamic_padding = false
-
-[window.dimensions]
-columns = 90
-lines = 30
-
-[window.padding]
-x = 0
-y = 0
+[colors.bright]
+black = "#808080"

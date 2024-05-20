@@ -64,6 +64,7 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.config/oh-my-zsh
 
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -132,12 +133,21 @@ export ZSH_CUSTOM=$ZSH/custom
 # Add wisely, as too many plugins slow down shell startup.
 
 # --- Plugins
-plugins=(git sudo zsh-syntax-highlighting zsh-autosuggestions zsh-autocomplete zsh-nvm bazel colored-man-pages )
+plugins=(git sudo zsh-syntax-highlighting zsh-autosuggestions zsh-nvm bazel colored-man-pages )
 
 # export fpath=(${HOMEBREW_PREFIX}/share/zsh-completions $fpath)
 fpath+=${ZSH_CUSTOM}/plugins/zsh-completions/src
 
 source $ZSH/oh-my-zsh.sh
+
+
+# OK to perform console I/O before this point.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+# From this point on, until zsh is fully initialized, console input won't work and
+# console output may appear uncolored.
+
 
 # override some the default alias form ohmyzsh
 source $XDG_CONFIG_HOME/shell/sh/004-aliases.sh

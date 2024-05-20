@@ -14,3 +14,4 @@
 }
 
 [[ -f $HOME/.local/share/bash/profile ]] && . "$HOME"/.local/share/bash/profile
+. "$HOME/.cargo/env"

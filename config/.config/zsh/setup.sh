@@ -23,7 +23,7 @@ ln -sf "$DOTFILES"/config/.config/zsh/.zshrc "$HOME"/.zshrc
 ln -sf "$DOTFILES"/config/.config/zsh/.p10k.zsh "$HOME"/.p10k.zsh
 
 echo "Sourcing zshrc file"
-source "$DOTFILES"/config/.config/zsh/.zshrc
+source "$HOME"/.zshrc
 
 echo "clone tmux plugin manager TPM"
 git clone https://github.com/tmux-plugins/tpm "$XDG_CONFIG_HOME"/tmux/plugins/tpm

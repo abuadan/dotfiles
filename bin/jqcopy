@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Small script to jq from clipboard
+
+pbpaste | jq | pbcopy
+
+# vim ft=sh

@@ -1,62 +1,87 @@
-brew "noti" # utility to display notifications from scripts
-brew "trash" # rm, but put in the trash rather than completely delete
+# Bundle
+tap "homebrew/bundle"
 
-# Applications
-cask "kitty" # a better terminal emulator
-cask "imageoptim" # a tool to optimize images
-cask "alacritty"
-cask "wezterm"
-
-# Fonts
-cask "font-fira-code"
-cask "font-jetbrains-mono"
-cask "font-cascadia-mono"
-cask "font-3270-nerd-font"
-brw "font-hack-nerd-font"
-
-# packages
-brew "lf"
-brew "node"
-brew "openjdk"
-brew "bat" # better cat
-brew "cloc" # lines of code counter
-brew "git-delta" # a better git diff
-brew "entr" # file watcher / command runner
-brew "fd" # find alternative
-brew "fzf" # Fuzzy file searcher, used in scripts and in vim
-brew "gh" # GitHub CLI
-brew "git" # Git version control (latest version)
-brew "gnupg" # GPG
-brew "grep" # grep (latest)
-brew "highlight" # code syntax highlighting
-brew "htop" # a top alternative
-brew "jq" # work with JSON files in shell scripts
-brew "neofetch" # pretty system info
-brew "gnu-sed"
-brew "neovim" # A better vim
-brew "python" # python (latest)
-brew "ripgrep" # very fast file searcher
-brew "nvm" # Fast Node version manager
-brew "shellcheck" # diagnostics for shell scripts
-brew "tmux" # terminal multiplexer
-brew "tree" # pretty-print directory contents
-brew "vim" # Vim (latest)
-brew "wdiff" # word differences in text files
-brew "wget" # internet file retriever
-brew "z" # switch between most used directories
-brew "zsh" # zsh (latest)
-brew "thefuck"
-brew "pyenv"
-brew "pyenv-virtualenv"
+# Packages
+brew "bat"
+brew "python@3.12"
+brew "cloc"
+brew "cowsay"
+brew "entr"
 brew "eza"
+brew "fd"
+brew "fzf"
+brew "gh"
+brew "git"
+brew "git-delta"
 brew "glow"
-brew "zstd"
+brew "gnu-sed"
+brew "gnupg"
+brew "grep"
+brew "helm"
+brew "highlight"
+brew "htop"
+brew "jq"
 brew "k9s"
 brew "kind"
 brew "kubectx"
-brew "helm"
-brew "pygments"
-brew "cowsay"
+brew "lf"
+brew "zstd"
 brew "lolcat"
+brew "neofetch"
+brew "neovim", args: ["HEAD"]
+brew "node"
+brew "noti"
+brew "nvm"
+brew "openjdk"
+brew "pyenv"
+brew "pyenv-virtualenv"
+brew "pygments"
+brew "ripgrep"
+brew "shellcheck"
+brew "thefuck"
+brew "tmux"
+brew "trash"
+brew "tree"
+brew "vim"
+brew "wdiff"
+brew "wget"
+brew "z"
 brew "zoxide"
+brew "zsh"
 brew "zsh-syntax-highlighting"
+brew "lazygit"
+brew "lazydocker"
+brew "awscli"
+brew "atuin"
+brew "ffmpegthumbnailer"
+brew "unar"
+brew "poppler"
+brew "yazi"
+brew "xh"
+brew "kondo"
+brew "rnr"
+brew "mprocs"
+brew "golang"
+brew "direnv"
+brew "ast-grep"
+
+cask "xcodes"
+
+# GCP sdk
+cask "google-cloud-sdk"
+
+# Terminals
+cask "kitty"
+cask "wezterm"
+cask "alacritty"
+
+# Utils
+cask "imageoptim" # a tool to optimize images
+
+# Fonts
+cask "font-3270-nerd-font"
+cask "font-cascadia-mono"
+cask "font-fira-code"
+cask "font-jetbrains-mono"
+cask "font-symbols-only-nerd-font"
+

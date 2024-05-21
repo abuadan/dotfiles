@@ -1,6 +1,8 @@
-#!/usr/bin/env bash 
+#!/usr/bin/env bash
 
-# setup fzf 
-[[ -x "$(command -v fzf)" ]] && {
-    $(brew --prefix)/opt/fzf/install
+[[ -x "$(command -v brew)" ]] && {
+	# setup fzf
+	[[ -x "$(command -v fzf)" ]] && {
+		"$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
+	}
 }

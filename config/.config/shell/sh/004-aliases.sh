@@ -42,7 +42,7 @@ alias gs="git status -s"
 [[ $SHELL =~ /bash$ ]] && alias src='source $HOME/.bashrc'
 [[ $SHELL =~ /zsh$ ]] && alias src='source $HOME/.config/zsh/.zshrc'
 
-# if exa is installed use that for ls
+# if eza is installed use that for ls
 if test "$(command -v eza)"; then
 	alias l="eza --group-directories-first --icons --color=auto --git -an"
 	alias ls="eza --group-directories-first --icons --color=always --git -lan --header"
@@ -59,6 +59,14 @@ else
 	unset ls_color
 fi
 
+if test "$(command -v lazydocker)"; then
+	alias lzd='lazydocker'
+fi
+
+if test "$(command -v lazygit)"; then
+	alias lzg='lazygit'
+fi
+
 [[ -x "$(command -v pacman)" ]] && {
 	alias mirror='sudo reflector --protocol https --latest 50 --number 20 --sort rate --save /etc/pacman.d/mirrorlist'
 	alias pacman="sudo pacman --color auto"
@@ -67,7 +75,10 @@ fi
 
 ########################## FZF ALIAS ##########################
 alias fzfs="fzf --preview 'bat --style numbers,changes --color=always {} | head -500'"
-alias rgf="rg --files --hidden | fzf --preview 'bat --style numbers,changes --color=always {} | head -500'"
+
+if test "$(command -v rg)"; then
+	alias rgf="rg --files --hidden | fzf --preview 'bat --style numbers,changes --color=always {} | head -500'"
+fi
 
 ########################## TMUX ALIAS ##########################
 alias tls="tmux ls"

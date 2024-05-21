@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if ! [ -d "$HOME/.config/oh-my-zsh" ]; then
-	sh -c "$(ZSH="$HOME/.config/oh-my-zsh" curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "ZSH=\"$HOME/.config/oh-my-zsh\"" --unattended
+	sh -c "$(ZSH=\"$HOME/.config/oh-my-zsh\" curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --unattended "
 fi
 
 echo "Oh My Zsh installed at $HOME/.config/oh-my-zsh"
@@ -15,7 +15,6 @@ PLUGINS=(
 	"zsh-autosuggestions|https://github.com/zsh-users/zsh-autosuggestions.git"
 	"zsh-completions|https://github.com/zsh-users/zsh-completions"
 	"zsh-nvm|https://github.com/lukechilds/zsh-nvm"
-	"fzf-tab|https://github.com/Aloxaf/fzf-tab"
 )
 # Install plugins
 for plugin in "${PLUGINS[@]}"; do
@@ -26,5 +25,5 @@ for plugin in "${PLUGINS[@]}"; do
 		echo "$plugin_name is not present at $ZSH_CUSTOM/plugins/$plugin_name, installing it via $git_repo"
 		git clone "$git_repo" "$ZSH_CUSTOM/plugins/$plugin_name"
 	fi
-	echo "$plugin_name installed at $ZSH_CUSTOM/plugins/$plugin_name   "
+	echo "$plugin_name installed at $ZSH_CUSTOM/plugins/$plugin_name"
 done

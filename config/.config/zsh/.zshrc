@@ -11,17 +11,10 @@
 # unccoment line to help profile slow startup time
 # keep at the top of .zshrc file
 
-# OK to perform console I/O before this point.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-# From this point on, until zsh is fully initialized, console input won't work and
-# console output may appear uncolored.
-
-
 # Profile ---------------------------------------------------------------------
 function_profile=false
 command_profile=false
+
 
 if [[ $function_profile == true ]]; then
     zmodload zsh/zprof
@@ -36,24 +29,48 @@ if [[ $command_profile == true ]]; then
 fi
 
 
-# Completion ------------------------------------------------------------------
-mkdir -p $HOME/.cache/zsh
-export ZSH_COMPDUMP=$HOME/.cache/zsh/zcompdump
-autoload -Uz compinit
-if [ ! -f $ZSH_COMPDUMP ] || [ "$(find $ZSH_COMPDUMP -mtime +1)" ]; then
-    # Either the compdump file does not exist or is older then a day, regen
-    compinit -d "$ZSH_COMPDUMP"
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-compinit -C -d $ZSH_COMPDUMP
 
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/.p10k.zsh" ]] || source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/.p10k.zsh"
 
-export PROMPT="pk10"
+# Completion ------------------------------------------------------------------
+if [[ ! -d  "${XDG_CACHE_HOME:-$HOME/.cache}/zsh" ]]; then
+	mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+fi
 
+export ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.config/oh-my-zsh
 
+# OK to perform console I/O before this point.
+(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv export zsh)"
 
+# From this point on, until zsh is fully initialized, console input won't work and
+# console output may appear uncolored.
+
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+		if [ ! -f $ZSH_COMPDUMP ] || [ "$(find $ZSH_COMPDUMP -mtime +1)" ]; then
+			# Either the compdump file does not exist or is older then a day, regen
+			autoload -Uz -d compinit $ZSH_COMPDUMP
+			compinit "$ZSH_COMPDUMP"
+		fi
+else
+  autoload -Uz -d compinit $ZSH_COMPDUMP
+	compinit -C -d $ZSH_COMPDUMP
+fi
+
+export GPG_TTY="$(tty)"
+
+####################### OH MY ZSH settings #####################################
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -115,28 +132,8 @@ export ZSH=$HOME/.config/oh-my-zsh
 # Would you like to use another custom folder than $ZSH/custom?
 export ZSH_CUSTOM=$ZSH/custom
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-
-# --- Plugins
-plugins=(git sudo zsh-syntax-highlighting zsh-completions zsh-autosuggestions zsh-nvm bazel colored-man-pages command-not-found fzf-tab)
-
-# export fpath=(${HOMEBREW_PREFIX}/share/zsh-completions $fpath)
-# fpath+=${ZSH_CUSTOM}/plugins/zsh-completions/src
-
-source $ZSH/oh-my-zsh.sh
-
-# override some the default alias form ohmyzsh
-# source $XDG_CONFIG_HOME/shell/sh/004-aliases.sh
-
 #You may need to manually set your language environment
 export LANG=en_US.UTF-8
-
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/.p10k.zsh" ]] || source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/.p10k.zsh"
 
 # Load shared shell -----------------------------------------------------------
 if [ -d $HOME/.config/shell/sh ]; then
@@ -145,10 +142,26 @@ if [ -d $HOME/.config/shell/sh ]; then
     done
 fi
 
-if [ -d $HOME/.config/shell/sh ]; then
-    for rc in $HOME/.config/shell/sh/*.sh; do
-        emulate bash -c ". $rc"
-    done
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+
+# --- Plugins
+plugins=(git sudo zsh-syntax-highlighting zsh-completions zsh-autosuggestions zsh-nvm bazel colored-man-pages command-not-found)
+
+# Update FPATH
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+FPATH="${ZSH:-$XDG_CONFIG_HOME/oh-my-zsh}/custom}/plugins/zsh-completions/src:${FPATH}"
+
+
+# Source zsh
+source $ZSH/oh-my-zsh.sh
+
+ZSH_THEME=powerlevel10k/powerlevel10k
+if [[ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/.p10k.zsh" ]]; then
+	source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/.p10k.zsh"
 fi
 
 # Source zsh specific configuration
@@ -158,15 +171,16 @@ if [[ -d $HOME/.config/shell/zsh ]]; then
     done
 fi
 
-# source functions
-if [[ -d $HOME/.config/zsh/functions ]]; then
-	for rc in $HOME/.config/zsh/*; do
-		source $rc
-	done
-fi
+
+# Source zsh specific configuration
+# Need to resource zsh config for them to take effect.
+source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/sh/004-aliases.sh"
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+# [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+
+# Source local profiles -------------------------------------------------------
+[[ -f $HOME/.local/share/zsh/zshrc ]] && . $HOME/.local/share/zsh/zshrc
 
 # Post profile ----------------------------------------------------------------
 if [[ $function_profile == true ]]; then
@@ -177,3 +191,4 @@ if [[ $command_profile == true ]]; then
     unsetopt xtrace
     exec 2>&3 3>&-
 fi
+

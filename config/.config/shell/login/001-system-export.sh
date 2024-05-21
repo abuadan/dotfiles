@@ -35,10 +35,9 @@ export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[04;38;5;111m'
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-
 ################## JAVA ###################
-export JAVA_HOME="/opt/homebrew/opt/openjdk"
+# export JAVA_HOME="/opt/homebrew/opt/openjdk"
+export JAVA_HOME="$(/usr/libexec/java_home -v 21)"
 ######################## FLAGS ########################
 # Compilation flags
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
@@ -54,3 +53,10 @@ export CXX=clang
 export GRPC_PYTHON_BUILD_SYSTEM_RE2=true
 export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=true
 export GRPC_BUILD_WITH_BORING_SSL_ASM="" pip
+
+export JAVA_OPTS="-server -Xms8192m -Xmx12288m -XX:ReservedCodeCacheSize=512m -XX:+UseG1GC -XX:SoftRefLRUPolicyMSPerMB=50 -ea -Dsun.io.useCanonCaches=false -Djava.net.preferIPv4Stack=true -XX:-OmitStackTraceInFastThrow"
+
+# Docker related stuff
+if [ "$(uname -s)" == "Darwin" ]; then
+	export DOCKER_DEFAULT_PLATFORM=linux/arm64
+fi

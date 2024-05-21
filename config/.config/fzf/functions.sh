@@ -52,7 +52,7 @@ _gr() {
 		cut -d$'\t' -f1
 }
 
-_fif() {
+fif() {
 	rg \
 		--column \
 		--line-number \
@@ -67,11 +67,48 @@ _fif() {
 
 }
 
-_docker-ps() {
+docker-ps() {
 	docker ps | fzf | awk '{print $1}'
 }
 
-_docker-logs() {
-	docker logs -f $(docker ps | fzf | awk '{print $1}')
+docker-logs() {
+	docker logs -f "$(docker ps | fzf | awk '{print $1}')"
+}
 
+# Man without options will use fzf to select a page
+fzf-man() {
+	MAN="/usr/bin/man"
+	if [ -n "$1" ]; then
+		$MAN "$@"
+		return $?
+	else
+		$MAN -k . | fzf --reverse --preview="echo {1,2} | sed 's/ (/./' | sed -E 's/\)\s*$//' | xargs $MAN" | awk '{print $1 "." $2}' | tr -d '()' | xargs -r $MAN
+		return $?
+	fi
+}
+
+fzf-kill-processes() {
+	local pid
+	pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+
+	if [ "x$pid" != "x" ]; then
+		echo "$pid" | xargs kill "-${1:-9}"
+	fi
+}
+
+fzf-env-vars() {
+	local out
+	out=$(env | fzf)
+	echo "$(echo "$out" | cut -d= -f2)"
+}
+
+fzf-aliases-functions() {
+	CMD=$(
+		(
+			(alias)
+			(functions | grep "()" | cut -d ' ' -f1 | grep -v "^_")
+		) | fzf | cut -d '=' -f1
+	)
+
+	eval "$CMD"
 }

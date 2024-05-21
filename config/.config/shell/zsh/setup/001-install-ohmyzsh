@@ -26,5 +26,5 @@ for plugin in "${PLUGINS[@]}"; do
 		echo "$plugin_name is not present at $ZSH_CUSTOM/plugins/$plugin_name, installing it via $git_repo"
 		git clone "$git_repo" "$ZSH_CUSTOM/plugins/$plugin_name"
 	fi
-	echo "$plugin_name installed at $ZSH_CUSTOM/plugins/$plugin_name   "
+	echo "$plugin_name installed at $ZSH_CUSTOM/plugins/$plugin_name"
 done

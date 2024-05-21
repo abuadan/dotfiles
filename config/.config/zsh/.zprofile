@@ -15,3 +15,5 @@ if [ -d $HOME/.config/shell/login ]; then
 fi
 
 [[ -f $HOME/.local/share/zsh/zprofile ]] && . $HOME/.local/share/zsh/zprofile
+
+source $HOME/.config/shell/000-gpg-ssh.sh

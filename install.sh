@@ -27,29 +27,33 @@ usage() {
 darwin_setup() {
 
 	info "Setup dot files linked to home directory"
-	chmod +x config/.config/zsh/setup.sh
+	config/.config/zsh/setup.sh
+
+	info "Installing OH my zsh and setting up p10k"
+	config/.config/shell/zsh/setup/001-install-ohmyzsh
+	config/.config/shell/zsh/setup/005-p10k.sh
+
+	info "setting up darwin settings"
+	setup/macos/settings
+	setup/macos/brew
+
+	info "Install Additional packages outside brew"
+	setup/packages/rust.sh
+
+	info "Update terminal settings"
+	setup/terminal/terminfo.sh
+
+	info "Initial setup of zsh"
 	config/.config/zsh/setup.sh
 
 	info "Link all folders/files assoisated with .config folder"
 	ln -sf "$DIR"/config/.config "$HOME"/.config
 
-	warning "Installing OH my zsh"
-	chmod +x config/.config/shell/zsh/setup/001-install-ohmyzsh
-	chmod +x config/.config/shell/zsh/setup/005-p10k.sh
+	info "Link bin folder to $XDG_DATA_HOME"
+	ln -sf "$DIR"/bin "$XDG_DATA_HOME"/sbin
 
-	config/.config/shell/zsh/setup/001-install-ohmyzsh
-	config/.config/shell/zsh/setup/005-p10k.sh
-
-	info "setting up darwin settings"
-	chmod +x setup/macos/brew
-	chmod +x setup/macos/settings
-
-	setup/macos/settings
-	setup/macos/brew
-
-	info "Update terminal settings"
-	chmod +x setup/terminal/terminfo.sh
-	setup/terminal/terminfo.sh
+	info "Sourcing zshrc file"
+	source "$HOME"/.zshrc
 
 }
 

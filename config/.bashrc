@@ -11,19 +11,16 @@
 [[ $- != *i* ]] && return
 
 [[ -d $HOME/.config/shell/sh ]] && {
-    for rc in "$HOME"/.config/shell/sh/*.sh; do
-        source $rc
-    done
+	for rc in "$HOME"/.config/shell/sh/*.sh; do
+		source $rc
+	done
 }
 
 # Source bash specific configuration
 [[ -d $HOME/.config/shell/bash ]] && {
-    for rc in "$HOME"/.config/shell/bash/*.bash; do
-        source $rc
-    done
+	for rc in "$HOME"/.config/shell/bash/*.bash; do
+		source $rc
+	done
 }
 
 [[ -f "$HOME"/.local/share/bash/bashrc ]] && . "$HOME"/.local/share/bash/bashrc
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-. "$HOME/.cargo/env"

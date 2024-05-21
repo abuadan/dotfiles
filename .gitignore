@@ -1,4 +1,16 @@
 *.DS_Store
+
+# We want to keep these folders empty since
+# they will be created during the install process
+
+/config/.config/oh-my-zsh/*
+!/config/.config/oh-my-zsh/.gitkeep
+/config/.config/nvm/*
+!/config/.config/nvm/.gitkeep
+/config/.config/thefuck/*
+!/config/.config/thefuck/.gitkeep
+
+
 /config/.config/gh/hosts.yml
 /config/.config/zsh/.*zcomp*
 /config/.config/zsh/.*zcomp*.

@@ -5,12 +5,12 @@
 
 # if zoxide is installed then source helper scripts
 [[ -x "$(command -v zoxide)" ]] && {
-    eval "$(zoxide init zsh)"
+		eval "$(zoxide init --cmd cd zsh)"
 }
 
-# [[ -x "$(command -v fuck)" ]] & {
-# 	eval "$(thefuck --alias)"
-# }
+[[ -x "$(command -v fuck)" ]] && {
+	eval "$(thefuck --alias)"
+}
 
 [[ -x "$(command -v pyenv)" ]] && {
 	export PATH="$PYENV_ROOT/bin:$PATH"

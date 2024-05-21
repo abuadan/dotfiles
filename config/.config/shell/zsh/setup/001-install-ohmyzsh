@@ -15,6 +15,7 @@ PLUGINS=(
 	"zsh-autosuggestions|https://github.com/zsh-users/zsh-autosuggestions.git"
 	"zsh-completions|https://github.com/zsh-users/zsh-completions"
 	"zsh-nvm|https://github.com/lukechilds/zsh-nvm"
+	"fzf-tab|https://github.com/Aloxaf/fzf-tab"
 )
 # Install plugins
 for plugin in "${PLUGINS[@]}"; do

@@ -15,7 +15,9 @@ cask "font-3270-nerd-font"
 brw "font-hack-nerd-font"
 
 # packages
-brew "java"
+brew "lf"
+brew "node"
+brew "openjdk"
 brew "bat" # better cat
 brew "cloc" # lines of code counter
 brew "git-delta" # a better git diff

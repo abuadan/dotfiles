@@ -1,0 +1,88 @@
+# How to open files
+cmd open ${{
+    case $(file --mime-type "$f" -b) in
+        text/*) nvim $fx ;;
+        video/*) mpv $fx ;;
+        application/pdf) zathura "$fx" ;;
+        *) for f in $fx; do
+                xdg-open "$f" &>/dev/null &
+            done ;;
+    esac
+}}
+
+# FZF
+cmd fzf ${{
+    DIR=$(fd -t d | fzf)
+    [ -z "$DIR" ] || lf -remote "send $id cd '$DIR'"
+}}
+cmd fzf-home ${{
+    DIR=$(fd -t d . $HOME | fzf)
+    [ -z "$DIR" ] || lf -remote "send $id cd '$DIR'"
+}}
+
+# Trash items
+cmd trash &{{
+    load=$(lf -remote 'load')
+    list=$(echo "$load" | sed '1d')
+    if [ -z "$list" ]; then
+        lf -remote "send $id echo 'No files in buffer.'"
+    else
+        lf -remote "send $id echo 'Trashing files...'"
+        trash-put $list
+        lf -remote 'send load'
+        lf -remote 'send clear'
+        lf -remote "send $id reload"
+        lf -remote "send $id echo 'Trashing files... Done.'"
+    fi
+}}
+
+cmd clear-wrapper :{{
+    clear
+    echo 'Cleared buffer.'
+}}
+
+# Rename files using editor
+cmd vi-rename ${{
+    vimv $fx
+    lf -remote "send $id echo '$(cat /tmp/.vimv-latest)'"
+    lf -remote 'send load'
+    lf -remote 'send clear'
+}}
+
+md zle-cd %printf 'cd %q && zle reset-prompt\n' "$PWD" >&$ZLE_FIFO
+
+cmd zle-insert-relative %{{
+    for f in $fx; do
+        printf 'LBUFFER+="${LBUFFER:+ }${(q)$(realpath %q --relative-to=$PWD)}"\n' "$f" >&$ZLE_FIFO
+    done
+}}
+
+cmd zle-insert-absolute %{{
+    for f in $fx; do
+        printf 'LBUFFER+="${LBUFFER:+ }%q"\n' "$f" >&$ZLE_FIFO
+    done
+}}
+
+cmd zle-init :{{
+    map . zle-cd
+    map A zle-insert-relative
+    map a zle-insert-absolute
+}}
+
+&[[ -n "$ZLE_FIFO" ]] && lf -remote "send $id zle-init"
+
+
+cmd fzf_jump ${{
+    res="$(find . -maxdepth 1 | fzf --reverse --header='Jump to location')"
+    if [ -n "$res" ]; then
+        if [ -d "$res" ]; then
+            cmd="cd"
+        else
+            cmd="select"
+        fi
+        res="$(printf '%s' "$res" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+        lf -remote "send $id $cmd \"$res\""
+    fi
+}}
+
+# vim: filetype=conf

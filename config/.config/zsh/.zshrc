@@ -10,56 +10,45 @@
 
 # unccoment line to help profile slow startup time
 # keep at the top of .zshrc file
-# zmodload zsh/zprof
+
+# OK to perform console I/O before this point.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+# From this point on, until zsh is fully initialized, console input won't work and
+# console output may appear uncolored.
+
+
+# Profile ---------------------------------------------------------------------
+function_profile=false
+command_profile=false
+
+if [[ $function_profile == true ]]; then
+    zmodload zsh/zprof
+fi
+
+if [[ $command_profile == true ]]; then
+    zmodload zsh/datetime
+    setopt promptsubst
+    PS4='+$EPOCHREALTIME %N:%i> '
+    exec 3>&2 2> startlog.$$
+    setopt xtrace prompt_subst
+fi
+
+
+# Completion ------------------------------------------------------------------
+mkdir -p $HOME/.cache/zsh
+export ZSH_COMPDUMP=$HOME/.cache/zsh/zcompdump
+autoload -Uz compinit
+if [ ! -f $ZSH_COMPDUMP ] || [ "$(find $ZSH_COMPDUMP -mtime +1)" ]; then
+    # Either the compdump file does not exist or is older then a day, regen
+    compinit -d "$ZSH_COMPDUMP"
+fi
+compinit -C -d $ZSH_COMPDUMP
+
 
 export PROMPT="pk10"
 
-# Generate zcompdump once a day
-if type brew &>/dev/null; then
-    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-    autoload -Uz compinit
-		  if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-			compinit;
-		else
-				compinit -C;
-		fi;
-fi
-
-autoload -Uz compinit
-for dump in $ZDOTDIR/.zcompdump(N.mh+24); do
-  compinit
-done
-compinit -C
-
-
-if [ -d $HOME/.config/shell/login ]; then
-    for rc in $HOME/.config/shell/login/*.sh; do
-        emulate bash -c ". $rc"
-    done
-fi
-
-if [ -d $HOME/.config/shell/sh ]; then
-    for rc in $HOME/.config/shell/sh/*.sh; do
-        emulate bash -c ". $rc"
-    done
-fi
-
-# Source zsh specific configuration
-if [[ -d $HOME/.config/shell/zsh ]]; then
-    for rc in $HOME/.config/shell/zsh/*.zsh; do
-        source $rc
-    done
-fi
-
-# source functions
-if [[ -d $HOME/.config/zsh/functions ]]; then
-	for rc in $HOME/.config/zsh/*; do
-		source $rc
-	done
-fi
-
-# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.config/oh-my-zsh
@@ -133,51 +122,58 @@ export ZSH_CUSTOM=$ZSH/custom
 # Add wisely, as too many plugins slow down shell startup.
 
 # --- Plugins
-plugins=(git sudo zsh-syntax-highlighting zsh-autosuggestions zsh-nvm bazel colored-man-pages )
+plugins=(git sudo zsh-syntax-highlighting zsh-completions zsh-autosuggestions zsh-nvm bazel colored-man-pages command-not-found fzf-tab)
 
 # export fpath=(${HOMEBREW_PREFIX}/share/zsh-completions $fpath)
-fpath+=${ZSH_CUSTOM}/plugins/zsh-completions/src
+# fpath+=${ZSH_CUSTOM}/plugins/zsh-completions/src
 
 source $ZSH/oh-my-zsh.sh
 
-
-# OK to perform console I/O before this point.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-# From this point on, until zsh is fully initialized, console input won't work and
-# console output may appear uncolored.
-
-
 # override some the default alias form ohmyzsh
-source $XDG_CONFIG_HOME/shell/sh/004-aliases.sh
+# source $XDG_CONFIG_HOME/shell/sh/004-aliases.sh
 
 #You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-[[ ! -f ~/.fzf.zsh ]] || source ~/.fzf.zsh
+[[ ! -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/.p10k.zsh" ]] || source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/.p10k.zsh"
 
-# zprof
-#
-#
-# Auto-Complete plugin key bindings
-## Make Tab go straight to the menu and cycle there
-bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
-bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
-## Don't show completions if the current word matches a pattern
-zstyle ':autocomplete:*' ignored-input '..##'
+# Load shared shell -----------------------------------------------------------
+if [ -d $HOME/.config/shell/sh ]; then
+    for rc in $HOME/.config/shell/sh/*.sh; do
+        source $rc
+    done
+fi
 
-## Reset history key bindings to Zsh default
-() {
-   local -a prefix=( '\e'{\[,O} )
-   local -a up=( ${^prefix}A ) down=( ${^prefix}B )
-   local key=
-   for key in $up[@]; do
-      bindkey "$key" up-line-or-history
-   done
-   for key in $down[@]; do
-      bindkey "$key" down-line-or-history
-   done
-}
+if [ -d $HOME/.config/shell/sh ]; then
+    for rc in $HOME/.config/shell/sh/*.sh; do
+        emulate bash -c ". $rc"
+    done
+fi
+
+# Source zsh specific configuration
+if [[ -d $HOME/.config/shell/zsh ]]; then
+    for rc in $HOME/.config/shell/zsh/*.zsh; do
+        source $rc
+    done
+fi
+
+# source functions
+if [[ -d $HOME/.config/zsh/functions ]]; then
+	for rc in $HOME/.config/zsh/*; do
+		source $rc
+	done
+fi
+
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+
+# Post profile ----------------------------------------------------------------
+if [[ $function_profile == true ]]; then
+    zprof > startup-functions.log
+fi
+
+if [[ $command_profile == true ]]; then
+    unsetopt xtrace
+    exec 2>&3 3>&-
+fi

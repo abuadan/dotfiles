@@ -3,10 +3,12 @@
 # We want to keep these folders empty since
 # they will be created during the install process
 
-/config/.config/oh-my-zsh/*
-!/config/.config/oh-my-zsh/.gitkeep
+config/.config/oh-my-zsh/*
+!config/.config/oh-my-zsh/.gitkeep
+
 /config/.config/nvm/*
 !/config/.config/nvm/.gitkeep
+
 /config/.config/thefuck/*
 !/config/.config/thefuck/.gitkeep
 
@@ -18,6 +20,7 @@
 */.zsh_sessions/
 /config/.config/zsh/.zsh_history
 /config/.config/tmux/plugins/*
+!/config/.config/tmux/plugins/.gitkeep
 /.vscode/
 /.idea/
 */.idea/*

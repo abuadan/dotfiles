@@ -8,10 +8,13 @@
 #
 
 [[ -d $HOME/.config/shell/login ]] && {
-    for rc in "$HOME"/.config/shell/login/*.sh; do
-        source $rc
-    done
+	for rc in "$HOME"/.config/shell/login/*.sh; do
+		source $rc
+	done
 }
 
 [[ -f $HOME/.local/share/bash/profile ]] && . "$HOME"/.local/share/bash/profile
-. "$HOME/.cargo/env"
+
+############### Tool specific env ################################################
+[[ -f $HOME/.cargo/env ]] && . "$HOME/.cargo/env"
+[[ -f "$HOME/.rye/env" ]] && . "$HOME/.rye/env"

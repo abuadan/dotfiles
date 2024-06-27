@@ -19,3 +19,7 @@ export POETRY_HOME="$XDG_DATA_HOME/poetry"
 export POETRY_CONFIG_DIR="$XDG_CONFIG_HOME/pypoetry"
 export POETRY_DATA_DIR="$XDG_DATA_HOME/pypoetry"
 export POETRY_CACHE_DIR="$XDG_CACHE_HOME/pypoetry"
+
+export GOROOT="$XDG_DATA_HOME/go"
+export GOPATH="XDG_DATA_HOME/go"
+export PATH=$GOPATH/bin:GOROOT/bin:$PATH

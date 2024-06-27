@@ -1,5 +1,6 @@
 *.DS_Store
-
+startup*.log
+startlog*
 # We want to keep these folders empty since
 # they will be created during the install process
 
@@ -21,6 +22,8 @@ config/.config/oh-my-zsh/*
 /config/.config/zsh/.zsh_history
 /config/.config/tmux/plugins/*
 !/config/.config/tmux/plugins/.gitkeep
+/config/.config/glcloud
+!/config/.config/glcloud/.gitkeep
 /.vscode/
 /.idea/
 */.idea/*

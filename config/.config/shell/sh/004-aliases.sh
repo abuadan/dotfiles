@@ -42,7 +42,7 @@ alias gs="git status -s"
 [[ $SHELL =~ /bash$ ]] && alias src='source $HOME/.bashrc'
 [[ $SHELL =~ /zsh$ ]] && alias src='source $HOME/.config/zsh/.zshrc'
 
-# if exa is installed use that for ls
+# if eza is installed use that for ls
 if test "$(command -v eza)"; then
 	alias l="eza --group-directories-first --icons --color=auto --git -an"
 	alias ls="eza --group-directories-first --icons --color=always --git -lan --header"
@@ -57,6 +57,14 @@ else
 	alias ll='ls -alh $ls_color'
 	alias lll='ls -lh $ls_color'
 	unset ls_color
+fi
+
+if test "$(command -v lazydocker)"; then
+	alias lzd='lazydocker'
+fi
+
+if test "$(command -v lazygit)"; then
+	alias lzg='lazygit'
 fi
 
 [[ -x "$(command -v pacman)" ]] && {

@@ -10,5 +10,3 @@
 export ZDOTDIR="$HOME/.config/zsh"
 
 [[ -f $HOME/.local/share/zsh/zshenv ]] && . $HOME/.local/share/zsh/zshenv
-
-. "$HOME/.cargo/env"

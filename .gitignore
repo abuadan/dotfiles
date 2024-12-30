@@ -4,9 +4,6 @@ startlog*
 # We want to keep these folders empty since
 # they will be created during the install process
 
-config/.config/oh-my-zsh/*
-!config/.config/oh-my-zsh/.gitkeep
-
 /config/.config/nvm/*
 !/config/.config/nvm/.gitkeep
 
@@ -15,16 +12,23 @@ config/.config/oh-my-zsh/*
 
 
 /config/.config/gh/hosts.yml
+
+# Zsh related things
 /config/.config/zsh/.*zcomp*
 /config/.config/zsh/.*zcomp*.
 /config/.config/zsh/.zsh_sessions/*
 */.zsh_sessions/
 /config/.config/zsh/.zsh_history
+
+# Tmux stuff
 /config/.config/tmux/plugins/*
 !/config/.config/tmux/plugins/.gitkeep
+
+# gcloud stuff
 /config/.config/glcloud
 !/config/.config/glcloud/.gitkeep
+
+# Editor information
 /.vscode/
 /.idea/
 */.idea/*
-/.pytest_cache/

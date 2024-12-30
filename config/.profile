@@ -14,7 +14,3 @@
 }
 
 [[ -f $HOME/.local/share/bash/profile ]] && . "$HOME"/.local/share/bash/profile
-
-############### Tool specific env ################################################
-[[ -f $HOME/.cargo/env ]] && . "$HOME/.cargo/env"
-[[ -f "$HOME/.rye/env" ]] && . "$HOME/.rye/env"

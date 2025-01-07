@@ -50,7 +50,8 @@ zstyle ':completion::complete:*' cache-path $ZSH_COMPDUMP
 # 	compinit -C -d $ZSH_COMPDUMP
 # fi
 
-export PROMPT="starship"
+export PROMPT="oh-my-posh"
+# export PROMPT="starship"
 
 ###################### ZIM zsh plugin manager ######################
 

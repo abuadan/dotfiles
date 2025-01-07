@@ -1,0 +1,19 @@
+
+title = "Ghostty 👻"
+theme = xcodedarkhc
+font-family = JetBrains Mono
+# font-family = Hack Nerd Font Mono
+# font-family = UbuntuMono NF
+
+font-size = 16
+
+background = #080808
+foreground = #dddddd
+selection-background = #1c2f39
+selection-foreground = #dddddd
+cursor-color = #e6eaea
+
+# extended colors
+palette = 16=#ffbb7a
+
+# vim: ft=conf

@@ -1,4 +1,4 @@
-#
+
 #
 #    ███████╗███████╗██╗  ██╗██████╗  ██████╗
 #    ╚══███╔╝██╔════╝██║  ██║██╔══██╗██╔════╝
@@ -32,23 +32,11 @@ fi
 if [[ ! -d  "${XDG_CACHE_HOME:-$HOME/.cache}/zsh" ]]; then
 	mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 fi
-
+export ZSH_CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/"
 export ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
-zstyle ':completion::complete:*' cache-path $ZSH_COMPDUMP
 
-#
-# if type brew &>/dev/null
-# then
-#   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-# 		if [ ! -f $ZSH_COMPDUMP ] || [ "$(find $ZSH_COMPDUMP -mtime +1)" ]; then
-# 			# Either the compdump file does not exist or is older then a day, regen
-# 			autoload -Uz -d compinit $ZSH_COMPDUMP
-# 			compinit "$ZSH_COMPDUMP"
-# 		fi
-# else
-#   autoload -Uz -d compinit $ZSH_COMPDUMP
-# 	compinit -C -d $ZSH_COMPDUMP
-# fi
+zstyle ':zim:completion' dumpfile $ZSH_CACHE/zsh_dumpfile
+zstyle ':completion::complete:*' cache-path $ZSH_COMPDUMP
 
 export PROMPT="oh-my-posh"
 # export PROMPT="starship"
@@ -73,9 +61,6 @@ source ${ZIM_HOME}/init.zsh
 
 export GPG_TTY="$(tty)"
 
-# Would you like to use another custom folder than $ZSH/custom?
-export ZSH_CUSTOM=$ZSH/custom
-
 #You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
@@ -86,13 +71,8 @@ if [ -d $HOME/.config/shell/sh ]; then
     done
 fi
 
-
-# --- Plugins
-# plugins=(git sudo zsh-syntax-highlighting zsh-completions zsh-autosuggestions zsh-nvm bazel colored-man-pages command-not-found)
-
 # Update FPATH
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-# FPATH="${ZSH:-$XDG_CONFIG_HOME/oh-my-zsh}/custom}/plugins/zsh-completions/src:${FPATH}"
 
 
 # Source zsh specific configuration

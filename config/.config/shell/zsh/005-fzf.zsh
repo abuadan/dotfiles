@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-# export FZF_BASE="/opt/homebrew/bin/fzf"
 
 # Setup fzf
 # ---------
-[ -f ~/.fzf.zsh ] && eval "$(fzf --zsh)"
+# # [ -f ~/.fzf.zsh ] && eval "$(fzf --zsh)"
+# Work around to fix init for zsh vi mode and fzf
+export ZVM_INIT_MODE=sourcing
+zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
 
 if [[ -x $(command -v fzf) ]]; then
 		eval "$(fzf --zsh)"

@@ -15,9 +15,9 @@
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-[[ -x "$(command -v atuin)" ]] && {
-		eval "$(atuin init zsh)"
-}
+# [[ -x "$(command -v atuin)" ]] && {
+# 		eval "$(atuin init zsh)"
+# }
 
 
 if [[ -d "$(brew --prefix)"/share/google-cloud-sdk ]]; then

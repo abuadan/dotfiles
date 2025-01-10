@@ -1,4 +1,4 @@
-import = ["/Users/abuadan/.config/alacritty/visual/colors/vscode_dark.toml"]
+import = ["~/.config/alacritty/visual/colors/vscode_dark.toml"]
 
 [bell]
 duration = 0

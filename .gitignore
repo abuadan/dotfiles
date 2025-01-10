@@ -10,6 +10,13 @@ startlog*
 /config/.config/thefuck/*
 !/config/.config/thefuck/.gitkeep
 
+/config/.config/yazi/plugins/*
+!/config/.config/yazi/plugins/.gitkeep
+!/config/.config/yazi/plugins/smart-paste.yazi/init.lua
+/config/.config/yazi/flavors/*
+!/config/.config/yazi/flavors/.gitkeep
+
+
 
 /config/.config/gh/hosts.yml
 

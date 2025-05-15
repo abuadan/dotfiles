@@ -32,14 +32,14 @@ fi
 if [[ ! -d  "${XDG_CACHE_HOME:-$HOME/.cache}/zsh" ]]; then
 	mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 fi
-export ZSH_CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/"
-export ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
+export ZSH_CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+export ZSH_COMPDUMP="${ZSH_CAC:-${XDG_CACHE_HOME:-$HOME/.cache}/zsh}/zcompdump"
 
 zstyle ':zim:completion' dumpfile $ZSH_CACHE/zsh_dumpfile
 zstyle ':completion::complete:*' cache-path $ZSH_COMPDUMP
 
-export PROMPT="oh-my-posh"
-# export PROMPT="starship"
+# export PROMPT="oh-my-posh"
+export PROMPT="starship"
 
 ###################### ZIM zsh plugin manager ######################
 

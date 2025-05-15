@@ -20,11 +20,17 @@ export POETRY_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/pypoetry"
 export POETRY_DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pypoetry"
 export POETRY_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/pypoetry"
 
-# GO config
-export GOROOT=/usr/local/go
-export GOPATH="$(brew --prefix)/bin/go"
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
+################## GO ###################
+export GOROOT='/usr/local/go'
+# export GOPTAH="${XDG_CONFIG_HOME:-$HOME/.config}"/go
+# export GOCACHE="${XDG_CACHE_HOME:-$HOME/.cache}"/go-build
+# export GOMODCACHE="${XDG_CACHE_HOME:-$HOME/.cache}"/go/pkg/mod
+# export GOENV="${XDG_DATA_HOME:-$HOME/.local}"/go/env
+# export GOBIN="${HOMEBREW_PREFIX:-/opt/homebrew/}"/bin/go
+# export GOROOT=/usr/local/go
+# export GOPATH="$(brew --prefix)/bin/go"
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+# export PATH=$PATH:$GOROOT/bin
 
 export RIPGREP_CONFIG_PATH="${XDG_CONFIG_HOME:-$HOME/.config}/ripgrep/.ripgreprc"
 

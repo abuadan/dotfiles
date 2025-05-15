@@ -10,6 +10,7 @@ if [[ $PROMPT = "starship" ]]; then
 	    eval "$(starship init zsh)"
 	}
 fi
+
 if [[ $PROMPT = "oh-my-posh" ]]; then
 	export OHMYPOSH_CONFIG=${XGD_CONFIG_HOME:-$HOME/.config}/oh-my-posh/powerlevel10k_rainbow.toml
 	[[ -x "$(command -v oh-my-posh)" ]] && {

@@ -480,7 +480,7 @@ tmux_conf_uninstall_plugins_on_reload=true
 
 # to enable a plugin, use the 'set -g @plugin' syntax:
 # visit https://github.com/tmux-plugins for available plugins
-set -g @plugin 'tmux-plugins/tmux-resurrect'
+# set -g @plugin 'tmux-plugins/tmux-resurrect'
 # set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-yank'
 set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
@@ -488,7 +488,6 @@ set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @plugin '27medkamal/tmux-session-wizard'
 set -g @plugin 'aserowy/tmux.nvim'
 set -g @plugin 'Morantron/tmux-fingers'
-# set -g @plugin 'fcsonline/tmux-thumbs'
 
 # run-shell $TMUX_PLUGIN_MANAGER_PATH/tmux-thumbs/tmux-thumbs.tmux
 
@@ -498,17 +497,17 @@ set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
 set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
 
 # tmux-continuum & tmux-resurrecrt
-set -g @continuum-restore 'on'
-# set -g @continuum-restore 'off'
-set -g @resurrect-capture-pane-contents 'on'
-set -g @resurrect-strategy-nvim 'session'
+# set -g @continuum-restore 'on'
+set -g @continuum-restore 'off'
+# set -g @resurrect-capture-pane-contents 'on'
+# set -g @resurrect-strategy-nvim 'session'
 
 set -g @fzf-url-open "chrome"
 set -g @session-wizard 'T'
 
 set -g @fingers-key C-f #!important
 # Start tmux fingers by pressing Alt+F
-# bind -n M-f run -b "#{@fingers-cli} start #{pane_id}"
+bind -n M-f run -b "#{@fingers-cli} start #{pane_id}"
 
 # Start tmux fingers in jump mode by pressing Alt+J
 bind -n M-f run -b "#{@fingers-cli} start #{pane_id} --mode jump"

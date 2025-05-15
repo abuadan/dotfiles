@@ -4,6 +4,9 @@ export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 
+# shellcheck disable=SC2155
+# export HOMEBREW_PREFIX="$(brew --prefix)"
+# shellcheck disable=SC2155
 export GPG_TTY="$(tty)"
 
 # editor and vim
@@ -37,7 +40,17 @@ export LESS_TERMCAP_us=$'\E[04;38;5;111m'
 
 ################## JAVA ###################
 # export JAVA_HOME="/opt/homebrew/opt/openjdk"
+# shellcheck disable=SC2155
 export JAVA_HOME="$(/usr/libexec/java_home -v 21)"
+export JAVA_OPTS="-server -Xms8192m -Xmx12288m -XX:ReservedCodeCacheSize=512m -XX:+UseG1GC -XX:SoftRefLRUPolicyMSPerMB=50 -ea -Dsun.io.useCanonCaches=false -Djava.net.preferIPv4Stack=true -XX:-OmitStackTraceInFastThrow"
+
+################## GO ###################
+# export GOROOT='/usr/local/go'
+# export GOPTAH="${XDG_CONFIG_HOME:-$HOME/.config}"/go
+# export GOCACHE="${XDG_CACHE_HOME:-$HOME/.cache}"/go-build
+# export GOMODCACHE="${XDG_CACHE_HOME:-$HOME/.cache}"/go/pkg/mod
+# export GOENV="${XDG_DATA_HOME:-$HOME/.local}"/go/env
+# export GOBIN="${HOMEBREW_PREFIX:-/opt/homebrew/}"/bin/go
 ######################## FLAGS ########################
 # Compilation flags
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
@@ -54,9 +67,10 @@ export GRPC_PYTHON_BUILD_SYSTEM_RE2=true
 export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=true
 export GRPC_BUILD_WITH_BORING_SSL_ASM="" pip
 
-export JAVA_OPTS="-server -Xms8192m -Xmx12288m -XX:ReservedCodeCacheSize=512m -XX:+UseG1GC -XX:SoftRefLRUPolicyMSPerMB=50 -ea -Dsun.io.useCanonCaches=false -Djava.net.preferIPv4Stack=true -XX:-OmitStackTraceInFastThrow"
-
 # Docker related stuff
 if [ "$(uname -s)" == "Darwin" ]; then
 	export DOCKER_DEFAULT_PLATFORM=linux/arm64
 fi
+
+export LC_ALL=en_IN.UTF-8
+export LANG=en_IN.UTF-8

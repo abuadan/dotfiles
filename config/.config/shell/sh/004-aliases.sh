@@ -81,5 +81,6 @@ if test "$(command -v rg)"; then
 fi
 
 ########################## TMUX ALIAS ##########################
+alias tmux="tmux -u"
 alias tls="tmux ls"
 alias ta="tmux attach-session -t"

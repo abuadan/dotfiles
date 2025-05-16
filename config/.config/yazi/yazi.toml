@@ -187,6 +187,9 @@ prepend_previewers = [
 	{ name = "*/", run = "eza-preview" },
 	{ name = "*.csv", run = "bat" },
 	{ name = "*.md", run = "bat" },
+	{ name = "*.rst", run = "rich-preview" },   # for restructured text (.rst) files
+	{ name = "*.ipynb", run = "rich-preview" }, # for jupyter notebooks (.ipynb)
+	{ name = "*.json", run = "rich-preview" },  # for json (.json) files
 ]
 
 [input]

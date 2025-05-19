@@ -65,6 +65,15 @@ brew "golang"
 brew "direnv"
 brew "ast-grep"
 
+
+# fonts
+brew "font-3270-nerd-font"
+brew "font-fira-code-nerd-font"
+brew "font-roboto-mono-nerd-font"
+brew "font-symbols-only-nerd-font"
+brew "font-cascadia-code"
+
+
 cask "xcodes"
 
 # GCP sdk

@@ -49,41 +49,46 @@ success_symbol = "[ ](bold green)"
 error_symbol = "[✘ ](italic red)"
 
 [directory]
-style = "fg:black bg:blue"
+style = "bold fg:#000000 bg:blue"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = " …/"
 
 [directory.substitutions]
 "~" = " ~"
-"Documents" = "  Documents"
+"Documents" = "󰈙  Documents"
 "Downloads" = "  Downloads"
 "Music" = "  Music"
 "Pictures" = "  Pictures"
-"Github" = "  Github"
+"Github" = "  Github"
+"code" = "󰲋  code"
 
 [git_branch]
-symbol = "  "
-style = "fg:black bg:yellow"
+symbol = "   "
+style = "bold italic fg:#000000 bg:yellow"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
 ahead = " $count "
 behind = " $count "
-deleted = "﫧$count "
-diverged = " $count "
-stashed = " $count "
+deleted = " $count "
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+stashed = "◃◈$count "
 modified = " $count "
 staged = " $count "
 renamed = " $count "
 untracked = " $count "
-style = "fg:black bg:yellow"
+style = "bold italic fg:#000000 bg:yellow"
 format = '[$all_status$ahead_behind ]($style)'
+
+[git_state]
+format = "[\\($state($progress_current of $progress_total)\\)]($style)"
+cherry_pick = "[🍒 PICKING](bold red)"
 
 [time]
 disabled = false
-time_format = "%a, %I:%M %p"   # Hour:Minute Format
-style = "fg:black bg:cyan"
+time_format = "%a, %I:%M %p"      # Hour:Minute Format
+style = "bold fg:#000000 bg:cyan"
 format = '[  $time ]($style)'
 
 [cmd_duration]

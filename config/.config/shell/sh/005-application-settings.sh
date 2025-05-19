@@ -19,3 +19,7 @@ fi
 if test "$(command -v wt)"; then
 	eval "$(wt source)"
 fi
+
+if [[ -f "$(brew --prefix)/etc/profile.d/z.sh" ]]; then
+	source "$(brew --prefix)/etc/profile.d/z.sh"
+fi

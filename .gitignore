@@ -4,19 +4,23 @@ startlog*
 # We want to keep these folders empty since
 # they will be created during the install process
 
+# nvm
 /config/.config/nvm/*
 !/config/.config/nvm/.gitkeep
 
+# thefuck
 /config/.config/thefuck/*
 !/config/.config/thefuck/.gitkeep
 
+# Yazi
 /config/.config/yazi/plugins/*
 !/config/.config/yazi/plugins/.gitkeep
 /config/.config/yazi/flavors/*
 !/config/.config/yazi/flavors/.gitkeep
-/config/.config/helix/runtime/*
-/config/.config/helix/runtime/.gitkeep
 
+# helix
+/config/.config/helix/runtime/*
+!/config/.config/helix/runtime/.gitkeep
 
 
 /config/.config/gh/hosts.yml

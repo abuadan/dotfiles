@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+dir=$(
+	_z 2>&1 |
+		fzf --height 40% --layout reverse --info inline \
+			--nth 2.. --tac --no-sort --query "$*" \
+			--accept-nth 2..
+) && cd "$dir"
+
+# vim ft=sh

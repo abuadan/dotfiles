@@ -84,3 +84,5 @@ fi
 alias tmux="tmux -u"
 alias tls="tmux ls"
 alias ta="tmux attach-session -t"
+
+unalias z 2>/dev/null

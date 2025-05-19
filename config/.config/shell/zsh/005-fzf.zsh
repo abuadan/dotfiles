@@ -6,7 +6,15 @@
 # # [ -f ~/.fzf.zsh ] && eval "$(fzf --zsh)"
 # Work around to fix init for zsh vi mode and fzf
 export ZVM_INIT_MODE=sourcing
-zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
+
+function zvm_after_init() {
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/fzf/fzf-git.sh" ]]; then
+	 bindkey -r '^G'
+	source "${XDG_DATA_HOME:-$HOME/.local/share}/fzf/fzf-git.sh"
+fi
+ }
+zvm_after_init_commands+=('zvm_after_init')
 
 if [[ -x $(command -v fzf) ]]; then
 		eval "$(fzf --zsh)"
@@ -16,11 +24,6 @@ if [[ -x $(command -v fzf) ]]; then
 
 fi
 
-
-# FZF Git
-if [[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/fzf/fzf-git.sh" ]]; then
-	source "${XDG_DATA_HOME:-$HOME/.local/share}/fzf/fzf-git.sh"
-fi
 
 # --- setup fzf theme ---
 fg="#CBE0F0"
@@ -60,7 +63,6 @@ _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
 
-[ -f "${XDG_DATA_HOME:-$HOME/.local/share}"/fzf/fzf-git.sh ] && source "${XDG_DATA_HOME:-$HOME/.local/share}"/fzf/fzf-git.sh
 
 show_file_or_dir_preview="if [ -d {} ]; then eza --tree --icons --color=always --git -a {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
 
@@ -82,6 +84,16 @@ _fzf_comprun() {
   esac
 }
 
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/functions.sh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/functions.sh
+# source some cusome commands
+if [[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/functions.sh ]]; then
+	source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/functions.sh
+fi
+
+# FZF Git
+if [[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/fzf/fzf-git.sh" ]]; then
+	 bindkey -r '^G'
+	source "${XDG_DATA_HOME:-$HOME/.local/share}/fzf/fzf-git.sh"
+fi
+# [ -f "${XDG_DATA_HOME:-$HOME/.local/share}"/fzf/fzf-git.sh ] && source "${XDG_DATA_HOME:-$HOME/.local/share}"/fzf/fzf-git.sh
 
 # vim ft=sh

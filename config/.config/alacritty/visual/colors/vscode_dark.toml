@@ -1,3 +1,7 @@
+# To add this to your config, e.g. if using Lazy:
+# import = [
+#     "~/Projects/personal/vscode.nvim/extra/alacritty/vscode-dark.toml"
+# ]
 [colors.primary]
 background = '#1F1F1F'
 foreground = '#D4D4D4'

@@ -1,0 +1,17 @@
+db_path = "~/.local/share/atuin/.history.db"
+key_path = "~/.local/share/atuin/key"
+dialect = "uk"
+## Set commands that will be completely ignored from stats
+ignored_commands = ["cd", "ls", "vi", "nvim", "vim"]
+enter_accept = false
+# Use Ctrl-0 .. Ctrl-9 instead of Alt-0 .. Alt-9 UI shortcuts
+ctrl_n_shortcuts = true
+
+keymap_cursor = { emacs = "blink-block", vim_insert = "blink-block", vim_normal = "steady-block" }
+keymap_mode = "vim-insert"
+filter_mode_shell_up_key_binding = "directory"                                                     # or global, host, directory, etc
+
+
+store_failed = true
+# Filter modes can still be toggled via ctrl-r
+filter_mode = "global"

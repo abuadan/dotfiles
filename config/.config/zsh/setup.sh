@@ -22,8 +22,18 @@ ln -sf "$DOTFILES"/config/.config/zsh/.zprofile "$HOME"/.zprofile
 ln -sf "$DOTFILES"/config/.config/zsh/.zshrc "$HOME"/.zshrc
 ln -sf "$DOTFILES"/config/.config/zsh/.p10k.zsh "$HOME"/.p10k.zsh
 
-echo "Sourcing zshrc file"
-source "$HOME"/.zshrc
+# Load shared shell -----------------------------------------------------------
+if [[ -d "${XGD_CONFIG_DATA:-$HOME/.config}/shell/sh" ]]; then
+	for rc in "${XGD_CONFIG_DATA:-$HOME/.config}"/shell/sh/*.sh; do
+		source $rc
+	done
+fi
 
-echo "clone tmux plugin manager TPM"
-git clone https://github.com/tmux-plugins/tpm "$XDG_CONFIG_HOME"/tmux/plugins/tpm
+echo "Settings up TPM for TMUX"
+# TODO: Wrap this around a guard
+if ! [[ -d "$XDG_CONFIG_HOME:-$HOME/.config}/tmux/plugins/tpm" ]]; then
+	echo "Cloning tpm"
+	git clone https://github.com/tmux-plugins/tpm "$XDG_CONFIG_HOME:-$HOME/.config}"/tmux/tmux/plugins/tpm
+else
+	echo "TPM already installed"
+fi

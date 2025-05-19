@@ -1,0 +1,204 @@
+console_title_template = '{{ .Shell }} in {{ .Folder }}'
+version = 3
+final_space = true
+
+[upgrade]
+source = 'cdn'
+interval = '168h'
+auto = false
+notice = false
+
+[[blocks]]
+type = 'prompt'
+alignment = 'left'
+
+[[blocks.segments]]
+leading_diamond = '╭─'
+template = ' {{ if .WSL }}WSL at {{ end }}{{.Icon}} '
+foreground = '#000000'
+background = '#d3d7cf'
+type = 'os'
+style = 'diamond'
+
+[[blocks.segments]]
+template = '  {{ .Path }} '
+foreground = '#e4e4e4'
+powerline_symbol = ''
+background = '#3465a4'
+type = 'path'
+style = 'powerline'
+
+[blocks.segments.properties]
+home_icon = '~'
+style = 'full'
+
+[[blocks.segments]]
+template = ' {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} '
+foreground = '#000000'
+powerline_symbol = ''
+background = '#4e9a06'
+type = 'git'
+style = 'powerline'
+background_templates = [
+	'{{ if or (.Working.Changed) (.Staging.Changed) }}#c4a000{{ end }}',
+	'{{ if and (gt .Ahead 0) (gt .Behind 0) }}#f26d50{{ end }}',
+	'{{ if gt .Ahead 0 }}#89d1dc{{ end }}',
+	'{{ if gt .Behind 0 }}#4e9a06{{ end }}',
+]
+
+[blocks.segments.properties]
+branch_icon = ' '
+fetch_stash_count = true
+fetch_status = true
+fetch_upstream_icon = true
+
+[[blocks]]
+type = 'prompt'
+alignment = 'right'
+
+[[blocks.segments]]
+template = ' {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }}  '
+foreground = '#ffffff'
+powerline_symbol = ''
+background = '#689f63'
+type = 'node'
+style = 'powerline'
+invert_powerline = true
+
+[blocks.segments.properties]
+fetch_version = true
+
+[[blocks.segments]]
+template = ' {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}  '
+foreground = '#111111'
+powerline_symbol = ''
+background = '#00acd7'
+type = 'go'
+style = 'powerline'
+invert_powerline = true
+
+[blocks.segments.properties]
+fetch_version = true
+
+[[blocks.segments]]
+template = ' {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}  '
+foreground = '#111111'
+powerline_symbol = ''
+background = '#4063D8'
+type = 'julia'
+style = 'powerline'
+invert_powerline = true
+
+[blocks.segments.properties]
+fetch_version = true
+
+[[blocks.segments]]
+template = ' {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}  '
+foreground = '#111111'
+powerline_symbol = ''
+background = '#FFDE57'
+type = 'python'
+style = 'powerline'
+invert_powerline = true
+
+[blocks.segments.properties]
+display_mode = 'files'
+fetch_virtual_env = false
+
+[[blocks.segments]]
+template = ' {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}  '
+foreground = '#ffffff'
+powerline_symbol = ''
+background = '#AE1401'
+type = 'ruby'
+style = 'powerline'
+invert_powerline = true
+
+[blocks.segments.properties]
+display_mode = 'files'
+fetch_version = true
+
+[[blocks.segments]]
+template = ' {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} '
+foreground = '#ffffff'
+powerline_symbol = ''
+background = '#FEAC19'
+type = 'azfunc'
+style = 'powerline'
+invert_powerline = true
+
+[blocks.segments.properties]
+display_mode = 'files'
+fetch_version = false
+
+# [[blocks.segments]]
+#   template = ' {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }}  '
+#   foreground = '#ffffff'
+#   powerline_symbol = ''
+#   type = 'aws'
+#   style = 'powerline'
+#   background_templates = ['{{if contains "default" .Profile}}#FFA400{{end}}', '{{if contains "jan" .Profile}}#f1184c{{end}}']
+#   invert_powerline = true
+#
+#   [blocks.segments.properties]
+#     display_default = false
+
+[[blocks.segments]]
+template = '  '
+foreground = '#111111'
+powerline_symbol = ''
+background = '#ffff66'
+type = 'root'
+style = 'powerline'
+invert_powerline = true
+
+[[blocks.segments]]
+template = ' {{ .FormattedMs }}  '
+foreground = '#000000'
+powerline_symbol = ''
+background = '#c4a000'
+type = 'executiontime'
+style = 'powerline'
+invert_powerline = true
+
+[[blocks.segments]]
+template = ' {{ if gt .Code 0 }}{{ reason .Code }}{{ else }}{{ end }} '
+foreground = '#d3d7cf'
+powerline_symbol = ''
+background = '#000000'
+type = 'status'
+style = 'powerline'
+background_templates = ['{{ if gt .Code 0 }}#cc2222{{ end }}']
+invert_powerline = true
+
+[blocks.segments.properties]
+always_enabled = true
+
+[[blocks.segments]]
+trailing_diamond = '─╮'
+template = ' {{ .CurrentDate | date .Format }}  '
+foreground = '#000000'
+background = '#d3d7cf'
+type = 'time'
+style = 'diamond'
+invert_powerline = true
+
+[[blocks]]
+type = 'prompt'
+alignment = 'left'
+newline = true
+
+[[blocks.segments]]
+template = '╰─'
+foreground = '#d3d7cf'
+type = 'text'
+style = 'plain'
+
+[[blocks]]
+type = 'rprompt'
+
+[[blocks.segments]]
+template = '─╯'
+foreground = '#d3d7cf'
+type = 'text'
+style = 'plain'

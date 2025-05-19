@@ -1,173 +1,188 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# Don't print a new line at the start of the prompt
+# Inserts a blank line between shell prompts
 add_newline = false
 
-# Define order to make prompt on one line
 format = """
-[](#0fb84f)\
-$os\
-$username\
-$hostname\
-[](bg:#DA627D fg:#9A348E)\
+[░▒▓](bg:#030B16 fg:#7DF9AA)\
 $directory\
-[](fg:#DA627D bg:#FCA17D)\
+[](fg:blue bg:yellow)\
 $git_branch\
-$git_commit\
 $git_status\
-$character\
-[](fg:#FCA17D bg:#86BBD8)\
-"""
+$git_metrics\
+[](fg:yellow bg:cyan)\
+$time\
+[](fg:cyan)\
+$fill\
 
-right_format = """
+$cmd_duration\
+$memory_usage\
+$docker_context\
+
 $c\
-$python\
+$dart\
+$elixir\
+$elm\
 $golang\
 $haskell\
 $java\
 $julia\
+$kotlin\
+$lua\
 $nodejs\
+$nim\
+$python\
+$rlang\
+$ruby\
 $rust\
 $scala\
-[](fg:#86BBD8 bg:#06969A)\
-$docker_context\
-[](fg:#06969A bg:#33658A)\
-$kube_context\
-[](fg:#06969A bg:#33658A)\
-$time\
-[ ](fg:#33658A)\
+
+$line_break\
+$character
 """
-[battery]
-full_symbol = "🔋"
-charging_symbol = "🔌"
-discharging_symbol = "⚡"
 
-[[battery.display]]
-threshold = 30
-style = "bold red"
+continuation_prompt = "[ ](blue)"
 
-[cmd_duration]
-min_time = 5_000  # Show command duration over 5,000 milliseconds (=10 sec)
-format = " took [$duration]($style)"
-
-# You can also replace your username with a neat symbol like   or disable this
-# and use the os module below
-[username]
-show_always = true
-style_user = "bg:#0a8a3a"
-style_root = "bg:#9A348E"
-format = '[$user ]($style)'
-disabled = false
-
-# An alternative to the username module which displays a symbol that
-# represents the current operating system
-[os]
-style = "bg:#9A348E"
-disabled = true # Disabled by default
+[character]
+success_symbol = "[ ](bold green)"
+error_symbol = "[✘ ](italic red)"
 
 [directory]
-style = "bg:#DA627D"
+style = "fg:black bg:blue"
 format = "[ $path ]($style)"
-truncation_length = 5
-truncation_symbol = "…/"
+truncation_length = 3
+truncation_symbol = " …/"
 
-[hostname]
-ssh_only = false
-format = "<[$hostname]($style)>"
-trim_at = "-"
-style = "bold dimmed white"
-disabled = true
-
-# Here is how you can shorten some long paths by text replacement
-# similar to mapped_locations in Oh My Posh:
 [directory.substitutions]
-"Documents" = " "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
-"Github" = ""
-# Keep in mind that the order matters. For example:
-# "Important Documents" = "  "
-# will not be replaced, because "Documents" was already substituted before.
-# So either put "Important Documents" before "Documents" or use the substituted version:
-# "Important  " = "  "
-[python]
-symbol = '🐍'
-pyenv_version_name = true
-format = '[ $symbol ($version) ]($style)'
+"~" = " ~"
+"Documents" = "  Documents"
+"Downloads" = "  Downloads"
+"Music" = "  Music"
+"Pictures" = "  Pictures"
+"Github" = "  Github"
 
-[c]
-symbol = " "
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
+[git_branch]
+symbol = "  "
+style = "fg:black bg:yellow"
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+ahead = " $count "
+behind = " $count "
+deleted = "﫧$count "
+diverged = " $count "
+stashed = " $count "
+modified = " $count "
+staged = " $count "
+renamed = " $count "
+untracked = " $count "
+style = "fg:black bg:yellow"
+format = '[$all_status$ahead_behind ]($style)'
+
+[time]
+disabled = false
+time_format = "%a, %I:%M %p"   # Hour:Minute Format
+style = "fg:black bg:cyan"
+format = '[  $time ]($style)'
+
+[cmd_duration]
+style = "yellow bold"
+format = '[  $duration]($style)'
+
+[memory_usage]
+disabled = false
+threshold = 75
+symbol = ' '
+style = 'yellow bold'
+format = '[ $symbol $ram]($style)'
 
 [docker_context]
 symbol = " "
-style = "bg:#06969A"
+style = "fg:#06969A bold"
 format = '[ $symbol $context ]($style) $path'
+
+[c]
+symbol = " "
+style = "fg:#3F4347 bold"
+format = '[ $symbol ($version) ]($style)'
+
+[dart]
+symbol = " "
+style = "fg:#3FBEF7 bold"
+format = '[ $symbol ($version) ]($style)'
 
 [elixir]
 symbol = " "
-style = "bg:#86BBD8"
+style = "fg:#422758 bold"
 format = '[ $symbol ($version) ]($style)'
 
 [elm]
 symbol = " "
-style = "bg:#86BBD8"
+style = "fg:#F0AD00 bold"
 format = '[ $symbol ($version) ]($style)'
-
-[git_branch]
-symbol = ""
-style = "bg:#FCA17D"
-format = '[ $symbol $branch ]($style)'
-
-[git_status]
-style = "bg:#FCA17D"
-format = '[$all_status$ahead_behind ]($style)'
 
 [golang]
 symbol = " "
-style = "bg:#86BBD8"
+style = "fg:#00ACD7 bold"
 format = '[ $symbol ($version) ]($style)'
 
 [haskell]
 symbol = " "
-style = "bg:#86BBD8"
+style = "fg:#9C4B89 bold"
 format = '[ $symbol ($version) ]($style)'
 
 [java]
 symbol = " "
-style = "bg:#86BBD8"
+style = "fg:#F0931C bold"
 format = '[ $symbol ($version) ]($style)'
 
 [julia]
 symbol = " "
-style = "bg:#86BBD8"
+style = "fg:#CA3C32 bold"
+format = '[ $symbol ($version) ]($style)'
+
+[kotlin]
+symbol = "🅺 "
+style = "fg:#746DDA bold"
+format = '[ $symbol ($version) ]($style)'
+
+[lua]
+symbol = " "
+style = "fg:#0402A9 bold"
 format = '[ $symbol ($version) ]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:#86BBD8"
+style = "fg:#6BA15C bold"
 format = '[ $symbol ($version) ]($style)'
 
 [nim]
 symbol = " "
-style = "bg:#86BBD8"
+style = "fg:#F7E852 bold"
+format = '[ $symbol ($version) ]($style)'
+
+[python]
+symbol = " "
+style = "fg:#316A9A bold"
+format = '[ $symbol ($version) ]($style)'
+
+[rlang]
+symbol = "ﳒ "
+style = "fg:#2266B8 bold"
+format = '[ $symbol ($version) ]($style)'
+
+[ruby]
+symbol = " "
+style = "fg:#B91B0B bold"
 format = '[ $symbol ($version) ]($style)'
 
 [rust]
-symbol = ""
-style = "bg:#86BBD8"
+symbol = " "
+style = "fg:#C26F2E bold"
 format = '[ $symbol ($version) ]($style)'
 
 [scala]
 symbol = " "
-style = "bg:#86BBD8"
+style = "fg:#D73222 bold"
 format = '[ $symbol ($version) ]($style)'
-
-[time]
-disabled = false
-time_format = "%R" # Hour:Minute Format
-style = "bg:#33658A"
-format = '[ ♥ $time ]($style)'

@@ -31,17 +31,18 @@ function main() {
 
 	append_path "$XDG_CONFIG_HOME/git/bin"
 	append_path "$XDG_CONFIG_HOME/fzf/bin"
-	append_path "$XDG_DATA_HOME/bin"
+	append_path "$XDG_DATA_HOME/sbin"
 	append_path "$XDG_DATA_HOME/cargo/bin"
 	append_path "$XDG_DATA_HOME/.cargo/bin"
 	append_path "$XDG_DATA_HOME/poetry/bin"
-
 	# this is a bit annoying since brew is not in the path yet
 	# so we need to use full path
 	append_path "/opt/homebrew/bin"
 	append_path "/opt/homebrew/sbin"
 	append_path "/opt/homebrew/opt/llvm/bin"
 	append_path "/opt/homebrew/opt/openjdk/bin"
+	append_path "/opt/homebrew/opt/ruby/bin"
+	append_path "/opt/homebrew/lib/ruby/gems/3.3.0/bin"
 
 	# adding system path back
 	# Ending solution from https://stackoverflow.com/a/15988793

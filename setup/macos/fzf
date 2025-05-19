@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set +ex
+
+SCRIPT=$(realpath "$0")
+DIR=$(dirname "$SCRIPT")
+
+. "$DIR/../utils/pretty_echo.sh" --source-only
+
+title "Running brew setup"
+info "checking if brew binary is present."
+# install fzf
+echo -e
+
+if test ! "$(command -v fzf)"; then
+	info "Installing fzf"
+	"$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
+fi

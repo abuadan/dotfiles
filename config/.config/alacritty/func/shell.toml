@@ -1,2 +1,4 @@
 window.option_as_alt = "Both"
+
+[general]
 working_directory = "None"

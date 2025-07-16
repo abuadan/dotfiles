@@ -1,14 +1,12 @@
 # vim: ft=zsh:
 
-# zmodule zsh-users/zsh-syntax-highlighting
-zmodule zdharma-continuum/fast-syntax-highlighting
-zmodule zsh-users/zsh-autosuggestions
 zmodule zsh-users/zsh-completions --fpath src
-zmodule zsh-users/zsh-history-substring-search
 zmodule completion
+zmodule zsh-users/zsh-autosuggestions
+zmodule zsh-users/zsh-history-substring-search
 zmodule sorin-ionescu/prezto --root modules/command-not-found
 zmodule sorin-ionescu/prezto --root modules/gnu-utility
 zmodule ohmyzsh/ohmyzsh --root plugins/git
 zmodule jeffreytse/zsh-vi-mode
-
-
+# zmodule zsh-users/zsh-syntax-highlighting
+zmodule zdharma-continuum/fast-syntax-highlighting

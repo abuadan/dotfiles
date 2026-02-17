@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+set -e
+
+show_help() {
+	cat <<EOF
+Usage: $(basename "$0") [OPTIONS] <branch-name>
+
+Fetch a branch from origin and start an interactive rebase onto it.
+
+Arguments:
+  <branch-name>        The branch to rebase onto (e.g. main, master, feature-x)
+
+Options:
+  -h, --help           Show this help message and exit
+
+Examples:
+  $(basename "$0") main
+  $(basename "$0") master
+  $(basename "$0") feature-branch
+EOF
+}
+
+# Handle help flag
+case "$1" in
+-h | --help)
+	show_help
+	exit 0
+	;;
+esac
+
+# Ensure a branch name is provided
+if [ -z "$1" ]; then
+	echo "Error: Missing branch name."
+	echo
+	show_help
+	exit 1
+fi
+
+BRANCH="$1"
+
+# Fetch the branch from origin and update local branch
+git fetch origin "${BRANCH}:${BRANCH}"
+
+# Start interactive rebase onto the specified branch
+git rebase -i "$BRANCH"
+
+# vim ft=sh

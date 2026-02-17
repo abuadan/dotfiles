@@ -26,7 +26,8 @@ clipboard-paste-protection = false
 
 # theme = "xcodedarkhc"
 # theme = Solarized Dark Higher Contrast
-theme = Github Dark
+# theme = Github Dark
+theme = vscode-dark
 font-family = JetBrains Mono
 # font-family = Hack Nerd Font Mono
 # font-family = UbuntuMono NF

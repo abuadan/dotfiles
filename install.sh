@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 set +ex
 
@@ -29,9 +29,10 @@ darwin_setup() {
 	info "Setup dot files linked to home directory"
 	config/.config/zsh/setup.sh
 
-	info "Installing OH my zsh and setting up p10k"
-	config/.config/shell/zsh/setup/001-install-ohmyzsh
-	config/.config/shell/zsh/setup/005-p10k.sh
+	# info "Installing OH my zsh and setting up p10k"
+	# TODO: Need to install different zsh zimrc and starship prompt and ohmyposh
+	# config/.config/shell/zsh/setup/
+	# config/.config/shell/zsh/setup/
 
 	info "setting up darwin settings"
 	setup/macos/settings

@@ -1,3 +1,5 @@
+[general]
+live_config_reload = true
 import = [
 	"~/.config/alacritty/func/debug.toml",
 	"~/.config/alacritty/func/env.toml",
@@ -12,4 +14,3 @@ import = [
 	"~/.config/alacritty/visual/window.toml",
 	# "~/.local/share/alacritty/config.yml",
 ]
-live_config_reload = true

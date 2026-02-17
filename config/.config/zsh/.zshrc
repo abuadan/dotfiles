@@ -32,16 +32,25 @@ fi
 if [[ ! -d  "${XDG_CACHE_HOME:-$HOME/.cache}/zsh" ]]; then
 	mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 fi
-export ZSH_CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
-export ZSH_COMPDUMP="${ZSH_CAC:-${XDG_CACHE_HOME:-$HOME/.cache}/zsh}/zcompdump"
 
-zstyle ':zim:completion' dumpfile $ZSH_CACHE/zsh_dumpfile
-zstyle ':completion::complete:*' cache-path $ZSH_COMPDUMP
+if [[ ! -d  "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zsh_sessions" ]]; then
+	mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zsh_sessions"
+fi
+
+export ZSH_CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zsh_sessions"
+export ZSH_COMPDUMP="${ZSH_CACHE:-${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zsh}/zcompdump"
 
 # export PROMPT="oh-my-posh"
 export PROMPT="starship"
 
+###################### ZSH Settings ###############################
+export ZDOTDIR="$HOME/.config/zsh"
+
 ###################### ZIM zsh plugin manager ######################
+
+zstyle ':zim:completion' dumpfile $ZSH_CACHE/zsh_dumpfile
+zstyle ':completion::complete:*' cache-path $ZSH_COMPDUMP
+
 
 export ZIM_CONFIG_FILE="${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}"/.zimrc
 export ZIM_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"/.zim
@@ -103,3 +112,6 @@ if [[ $command_profile == true ]]; then
     exec 2>&3 3>&-
 fi
 
+
+# Added by Antigravity
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"

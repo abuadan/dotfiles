@@ -1,0 +1,52 @@
+#!/usr/bin/env python3
+
+import csv
+import json
+import argparse
+import logging
+import pathlib
+import sys
+
+Logger = logging.basicConfig()
+
+
+class FileTypeNotSupportedError(Exception):
+    pass
+
+
+def validate_input_file_csv(file: pathlib.Path):
+    if file.suffix != ".csv":
+        return False
+    return True
+
+
+def convert_csv_to_json(file: str, number_of_lines: int):
+    """ """
+    file_ = pathlib.Path(file)
+    if not validate_input_file_csv(file_):
+        raise FileTypeNotSupportedError(
+            f"expected a csv, file type provided {file_.suffix}"
+        )
+    with open(file_, mode="r", newline="", encoding="utf-8") as csvfile:
+        for count, row in enumerate(csv.DictReader(csvfile)):
+            if count + 1 == number_of_lines:
+                print(count, row)
+                break
+            else:
+                json.dump(row, sys.stdout)
+                sys.stdout.write("\n")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        prog="Csv2Json",
+        description="Simple csv to json converter",
+        epilog="A simple csv to json converter that also produces a specific number of lines of the output json",
+    )
+    parser.add_argument("file", type=str, help="The csv file to be processed")
+    parser.add_argument("-l", "--lines", type=int)
+    args = parser.parse_args()
+
+    convert_csv_to_json(args.file, args.lines)
+
+# vim: set filetype=python

@@ -27,6 +27,7 @@ alias v=vim
 alias psake='powershell -c Invoke-Psake'
 
 # default command flags
+alias ca=cat
 [[ -n "$(command -v bat)" ]] && alias cat=bat
 alias df="df -Tha --total"
 alias egrep='egrep --color=auto'

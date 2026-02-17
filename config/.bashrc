@@ -24,3 +24,5 @@
 }
 
 [[ -f "$HOME"/.local/share/bash/bashrc ]] && . "$HOME"/.local/share/bash/bashrc
+
+[[ -f "$HOME"/.local/share/cargo/env ]] && . "$HOME"/.local/share/cargo/env

@@ -20,7 +20,6 @@ ln -sf "$DOTFILES"/config/.config/zsh/.zlogin "$HOME"/.zlogin
 ln -sf "$DOTFILES"/config/.config/zsh/.zlogout "$HOME"/.zlogout
 ln -sf "$DOTFILES"/config/.config/zsh/.zprofile "$HOME"/.zprofile
 ln -sf "$DOTFILES"/config/.config/zsh/.zshrc "$HOME"/.zshrc
-ln -sf "$DOTFILES"/config/.config/zsh/.p10k.zsh "$HOME"/.p10k.zsh
 
 # Load shared shell -----------------------------------------------------------
 if [[ -d "${XGD_CONFIG_DATA:-$HOME/.config}/shell/sh" ]]; then
@@ -31,9 +30,10 @@ fi
 
 echo "Settings up TPM for TMUX"
 # TODO: Wrap this around a guard
-if ! [[ -d "$XDG_CONFIG_HOME:-$HOME/.config}/tmux/plugins/tpm" ]]; then
+if ! [[ -d "${XDG_CONFIG_HOME:-$HOME/.config}"/tmux/plugins/tpm ]]; then
+	mkdir -b "${XDG_CONFIG_HOME:-$HOME/.config}"/tmux/plugins/tpm/
 	echo "Cloning tpm"
-	git clone https://github.com/tmux-plugins/tpm "$XDG_CONFIG_HOME:-$HOME/.config}"/tmux/tmux/plugins/tpm
+	git clone https://github.com/tmux-plugins/tpm "${XDG_CONFIG_HOME:-$HOME/.config}"/tmux/tmux/plugins/tpm
 else
 	echo "TPM already installed"
 fi

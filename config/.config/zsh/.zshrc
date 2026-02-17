@@ -32,8 +32,13 @@ fi
 if [[ ! -d  "${XDG_CACHE_HOME:-$HOME/.cache}/zsh" ]]; then
 	mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 fi
-export ZSH_CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
-export ZSH_COMPDUMP="${ZSH_CAC:-${XDG_CACHE_HOME:-$HOME/.cache}/zsh}/zcompdump"
+
+if [[ ! -d  "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zsh_sessions" ]]; then
+	mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zsh_sessions"
+fi
+
+export ZSH_CACHE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zsh_sessions"
+export ZSH_COMPDUMP="${ZSH_CACHE:-${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zsh}/zcompdump"
 
 # export PROMPT="oh-my-posh"
 export PROMPT="starship"
@@ -107,3 +112,6 @@ if [[ $command_profile == true ]]; then
     exec 2>&3 3>&-
 fi
 
+
+# Added by Antigravity
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"

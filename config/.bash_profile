@@ -12,3 +12,5 @@
 
 # Include .bashrc if it exists
 [[ -f $HOME/.bashrc ]] && . "$HOME"/.bashrc
+
+[[ -f "$HOME"/.local/share/cargo/env ]] && . "$HOME"/.local/share/cargo/env

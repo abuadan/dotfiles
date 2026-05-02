@@ -15,7 +15,7 @@ export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/starship/starship.toml
 
 export PYENV_ROOT="${XDG_DATA_HOME:-$HOME/.local/share}/pyenv"
 
-export POETRY_HOME="${XDG_DATA_HOME:-$HOME/.config}/poetry"
+export POETRY_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/poetry"
 export POETRY_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/pypoetry"
 export POETRY_DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pypoetry"
 export POETRY_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/pypoetry"
@@ -25,7 +25,7 @@ export GOROOT='/usr/local/go'
 # export GOPTAH="${XDG_CONFIG_HOME:-$HOME/.config}"/go
 # export GOCACHE="${XDG_CACHE_HOME:-$HOME/.cache}"/go-build
 # export GOMODCACHE="${XDG_CACHE_HOME:-$HOME/.cache}"/go/pkg/mod
-# export GOENV="${XDG_DATA_HOME:-$HOME/.local}"/go/env
+# export GOENV="${XDG_DATA_HOME:-$HOME/.local/share}/go/env
 # export GOBIN="${HOMEBREW_PREFIX:-/opt/homebrew/}"/bin/go
 # export GOROOT=/usr/local/go
 # export GOPATH="$(brew --prefix)/bin/go"
@@ -42,3 +42,11 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 
 # Rust Cargo
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo/"
+
+# LLMs and coding agent exports
+export CLAUDE_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/.claude/"
+
+# Added by Antigravity
+export GEMINI_CONFIG_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/.gemini"
+
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"

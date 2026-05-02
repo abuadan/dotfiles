@@ -112,6 +112,3 @@ if [[ $command_profile == true ]]; then
     exec 2>&3 3>&-
 fi
 
-
-# Added by Antigravity
-export PATH="$HOME/.antigravity/antigravity/bin:$PATH"

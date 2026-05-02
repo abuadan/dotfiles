@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+bat --decorations=never -p --wrap=never --paging=never "$@" | pbcopy
+
+# vim: set filetype=sh
+# vim: et sw=2 ts=2 sts=2

@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Use like normal fzf, but the output are copied to the clipboard
+f() {
+	# https://stackoverflow.com/a/46726373/9157799
+	if [ -p /dev/stdin ]; then # if data was piped
+		stdin=$(</dev/stdin)
+		echo "$stdin" | fzf "$@" | xclip
+		fzo="$(xclip -o)"
+	else
+		fzo=$(fzf "$@")
+	fi
+	if [ "$fzo" != "" ]; then
+		echo -n "$fzo" | xclip -se c
+		echo "$fzo"
+	fi
+}
+
+f "$@"
+# vim: set filetype=sh
+# vim: et sw=2 ts=2 sts=2

@@ -1,4 +1,4 @@
-# vim ft=conf
+# vim:ft=conf
 #
 # https://ghostty.org/docs/config/reference
 #
@@ -27,7 +27,7 @@ clipboard-paste-protection = false
 # theme = "xcodedarkhc"
 # theme = Solarized Dark Higher Contrast
 # theme = Github Dark
-theme = vscode-dark
+theme = vscodeNightOwlDark
 font-family = JetBrains Mono
 # font-family = Hack Nerd Font Mono
 # font-family = UbuntuMono NF
@@ -59,3 +59,5 @@ font-codepoint-map = U+e5fa-U+e6b1=JetBrainsMono Nerd Font Mono
 # codicons
 font-codepoint-map = U+ea60-U+ebeb=JetBrainsMono Nerd Font Mono
 
+
+# vim:ft=conf

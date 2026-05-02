@@ -19,6 +19,3 @@ blue = "#007ACC"
 magenta = "#C586C0"
 cyan = "#4FC1FF"
 white = "#D4D4D4"
-
-[colors.bright]
-black = "#808080"

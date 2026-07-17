@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
 dir=$(
-	_z 2>&1 |
+	zoxide query -l |
 		fzf --height 40% --layout reverse --info inline \
-			--nth 2.. --tac --no-sort --query "$*" \
-			--accept-nth 2..
+			--tac --no-sort --query "$*"
 ) && cd "$dir"
 
 # vim ft=sh

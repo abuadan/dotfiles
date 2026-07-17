@@ -15,11 +15,6 @@ export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/starship/starship.toml
 
 export PYENV_ROOT="${XDG_DATA_HOME:-$HOME/.local/share}/pyenv"
 
-export POETRY_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/poetry"
-export POETRY_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/pypoetry"
-export POETRY_DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/pypoetry"
-export POETRY_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/pypoetry"
-
 ################## GO ###################
 export GOROOT='/usr/local/go'
 # export GOPTAH="${XDG_CONFIG_HOME:-$HOME/.config}"/go

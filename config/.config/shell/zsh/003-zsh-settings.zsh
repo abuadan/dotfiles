@@ -3,7 +3,7 @@ export SAVEHIST=2000
 export HISTDUP=erase
 
 export HISTFILE="${XDG_CACHE_HOME:-${HOME}/.cache}/zsh/history"
-mkdir -p $(dirname "$HISTFILE")
+[[ -d "${HISTFILE:h}" ]] || mkdir -p "${HISTFILE:h}"
 
 # https://www.commandlinux.com/man-page/man1/zshoptions.1.html
 setopt   HIST_FCNTL_LOCK        # Better file lock call with histfile
@@ -23,7 +23,8 @@ zstyle ':completion:*' menu select
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # Ignore case completion for zsh
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+# zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
 # set list-colors to enable filename colorizing
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 

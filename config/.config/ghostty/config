@@ -23,7 +23,7 @@ cursor-style-blink = true
 mouse-hide-while-typing = true
 clipboard-read = "allow"
 clipboard-paste-protection = false
-
+minimum-contrast=1
 # theme = "xcodedarkhc"
 # theme = Solarized Dark Higher Contrast
 # theme = Github Dark

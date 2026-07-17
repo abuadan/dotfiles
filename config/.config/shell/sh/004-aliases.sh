@@ -44,11 +44,17 @@ alias gs="git status -s"
 [[ $SHELL =~ /zsh$ ]] && alias src='source $HOME/.config/zsh/.zshrc'
 
 # if eza is installed use that for ls
+# Note: --git (per-file git status) is left off the defaults - it makes eza
+# compute git status for every listed file, which is fine in small repos but
+# can take multiple seconds to minutes in huge ones (e.g. a monorepo with 1M+
+# tracked files). Use lsg/llg below when you want it and know the repo is small.
 if test "$(command -v eza)"; then
-	alias l="eza --group-directories-first --icons --color=auto --git -an"
-	alias ls="eza --group-directories-first --icons --color=always --git -lan --header"
-	alias ll="eza --group-directories-first --icons --color=auto --git -lan"
-	alias lll="eza --group-directories-first --icons --color=auto --git -ln"
+	alias l="eza --group-directories-first --icons --color=auto -an"
+	alias ls="eza --group-directories-first --icons --color=always -lan --header"
+	alias ll="eza --group-directories-first --icons --color=auto -lan"
+	alias lll="eza --group-directories-first --icons --color=auto -ln"
+	alias lsg="eza --group-directories-first --icons --color=always --git -lan --header"
+	alias llg="eza --group-directories-first --icons --color=auto --git -lan"
 else
 	# have to check if we are on a bsd system (cough, cough... mac) as
 	# it does not have color mode because of course...

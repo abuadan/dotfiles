@@ -1,13 +1,13 @@
 
-bindkey -e
 bindkey -s '^f' 'tm\n'
 bindkey -s '^b' 'tm -e\n'
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
+bindkey '^[[1;3C' forward-word # Option-right-arrow
+bindkey '^[[1;3D' backward-word # Option-left-arrow
+
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
-bindkey 'ƒ' forward-word  # Option-f
-bindkey '∫' backward-word # Option-b
 
 # Use vim key in tab complete menu
 bindkey -M menuselect 'h' vi-backward-char
@@ -39,4 +39,3 @@ function vi-yank-systemclipboard {
 }
 zle -N vi-yank-systemclipboard
 bindkey -M vicmd 'Y' vi-yank-systemclipboard
-

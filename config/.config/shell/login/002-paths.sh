@@ -34,7 +34,6 @@ function main() {
 	append_path "$XDG_DATA_HOME/sbin"
 	append_path "$XDG_DATA_HOME/cargo/bin"
 	append_path "$XDG_DATA_HOME/.cargo/bin"
-	append_path "$XDG_DATA_HOME/poetry/bin"
 	# this is a bit annoying since brew is not in the path yet
 	# so we need to use full path
 	append_path "/opt/homebrew/bin"

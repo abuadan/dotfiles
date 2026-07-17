@@ -1,7 +1,7 @@
 # Setup prompt to use
 
 if [[ $PROMPT = "starship" ]]; then
-	export STARSHIP_CONFIG=${XGD_CONFIG_HOME:-$HOME/.config}/starship/starship.toml
+	export STARSHIP_CONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/starship/starship.toml
 	if [[ ! -d  "${XDG_CACHE_HOME:-$HOME/.cache}/.starship" ]]; then
 		mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/.starship"
 	fi
@@ -12,7 +12,7 @@ if [[ $PROMPT = "starship" ]]; then
 fi
 
 if [[ $PROMPT = "oh-my-posh" ]]; then
-	export OHMYPOSH_CONFIG=${XGD_CONFIG_HOME:-$HOME/.config}/oh-my-posh/powerlevel10k_rainbow.toml
+	export OHMYPOSH_CONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/oh-my-posh/powerlevel10k_rainbow.toml
 	[[ -x "$(command -v oh-my-posh)" ]] && {
 		eval "$(oh-my-posh init zsh --config $OHMYPOSH_CONFIG)"
 	}

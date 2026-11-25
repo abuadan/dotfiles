@@ -29,9 +29,15 @@ function main() {
 		done
 	}
 
+	# Make plain `java` match JAVA_HOME (JDK 21, set in 001-system-export.sh). Platform needs
+	# 21 to run Gradle; the unversioned Homebrew `openjdk` formula is the latest JDK (27).
+	[[ -d "$JAVA_HOME/bin" ]] && prepend_path "$JAVA_HOME/bin"
+
 	append_path "$XDG_CONFIG_HOME/git/bin"
 	append_path "$XDG_CONFIG_HOME/fzf/bin"
 	append_path "$XDG_DATA_HOME/sbin"
+	# Machine/work-specific scripts that are deliberately not tracked in dotfiles
+	append_path "$HOME/.local/bin"
 	append_path "$XDG_DATA_HOME/cargo/bin"
 	append_path "$XDG_DATA_HOME/.cargo/bin"
 	# this is a bit annoying since brew is not in the path yet
@@ -39,7 +45,7 @@ function main() {
 	append_path "/opt/homebrew/bin"
 	append_path "/opt/homebrew/sbin"
 	append_path "/opt/homebrew/opt/llvm/bin"
-	append_path "/opt/homebrew/opt/openjdk/bin"
+	append_path "/opt/homebrew/opt/openjdk@21/bin"
 	append_path "/opt/homebrew/opt/ruby/bin"
 	append_path "/opt/homebrew/lib/ruby/gems/3.3.0/bin"
 

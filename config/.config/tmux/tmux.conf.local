@@ -501,7 +501,8 @@ set -g @plugin 'Morantron/tmux-fingers'
 # run-shell $TMUX_PLUGIN_MANAGER_PATH/tmux-thumbs/tmux-thumbs.tmux
 
 # Undercurl
-set -g default-terminal "${TERM}"
+set -g default-terminal "tmux-256color"
+set -as terminal-features ',*:RGB'
 set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
 set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
 

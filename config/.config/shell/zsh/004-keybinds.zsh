@@ -14,7 +14,11 @@ bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
+# zsh-vi-mode resets keymaps on init, so bind backspace after it has finished.
+# (The old `bindkey -v '^?' ...` just selected the viins keymap and bound nothing.)
+function zvm_after_init() {
+  bindkey -M viins '^?' backward-delete-char
+}
 
 # change word selection to exclude slashes
 autoload -U select-word-style
@@ -27,7 +31,7 @@ bindkey '^v' edit-command-line
 
 # Copy pwd to system clipboard by ctrl-y
 function copypwd {
-  echo $(pwd) | pbcopy
+  print -rn -- "$PWD" | pbcopy
 }
 zle -N copypwd
 bindkey '^y' copypwd

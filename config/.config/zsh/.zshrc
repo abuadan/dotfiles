@@ -90,7 +90,7 @@ source ${ZIM_HOME}/init.zsh
 export GPG_TTY="$(tty)"
 
 #You may need to manually set your language environment
-export LANG=en_US.UTF-8
+# (Locale is set in shell/login/001-system-export.sh; LC_ALL there wins over any LANG set here.)
 
 # Load shared shell -----------------------------------------------------------
 if [ -d $HOME/.config/shell/sh ]; then
@@ -113,6 +113,17 @@ source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/sh/004-aliases.sh"
 
 # Source local profiles -------------------------------------------------------
 [[ -f $HOME/.local/share/zsh/zshrc ]] && . $HOME/.local/share/zsh/zshrc
+
+# zoxide must be initialised last: it hooks chpwd/precmd and warns if anything is
+# configured after it. (Cached so we don't fork `zoxide init` on every shell.)
+if command -v zoxide >/dev/null 2>&1; then
+    ZOXIDE_CACHE="$HOME/.cache/zoxide_init.zsh"
+    if [[ ! -f "$ZOXIDE_CACHE" || "$(command -v zoxide)" -nt "$ZOXIDE_CACHE" ]]; then
+        zoxide init --cmd cd zsh > "$ZOXIDE_CACHE"
+    fi
+    source "$ZOXIDE_CACHE"
+    unset ZOXIDE_CACHE
+fi
 
 # Post profile ----------------------------------------------------------------
 if [[ $function_profile == true ]]; then

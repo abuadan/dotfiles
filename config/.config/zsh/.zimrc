@@ -1,12 +1,17 @@
 # vim: ft=zsh:
 
+# Load order matters for the cursor/redraw glitches:
+#   1. zsh-vi-mode first, so it owns the keymaps before anything else wraps ZLE widgets
+#   2. syntax highlighting after it
+#   3. history-substring-search after syntax highlighting (required by both plugins' docs)
+#   4. autosuggestions last, so its widget wrappers sit on top of the final bindings
 zmodule zsh-users/zsh-completions --fpath src
 zmodule completion
-zmodule zsh-users/zsh-autosuggestions
-zmodule zsh-users/zsh-history-substring-search
 zmodule sorin-ionescu/prezto --root modules/command-not-found
 zmodule sorin-ionescu/prezto --root modules/gnu-utility
 zmodule ohmyzsh/ohmyzsh --root plugins/git
 zmodule jeffreytse/zsh-vi-mode
 # zmodule zsh-users/zsh-syntax-highlighting
 zmodule zdharma-continuum/fast-syntax-highlighting
+zmodule zsh-users/zsh-history-substring-search
+zmodule zsh-users/zsh-autosuggestions

@@ -17,7 +17,9 @@ window-width = 9999
 confirm-close-surface = true
 macos-option-as-alt = true
 macos-titlebar-style = "tabs"
-shell-integration = none
+shell-integration = zsh
+# zsh-vi-mode manages the cursor shape itself
+shell-integration-features = no-cursor
 cursor-style = block
 cursor-style-blink = true
 mouse-hide-while-typing = true

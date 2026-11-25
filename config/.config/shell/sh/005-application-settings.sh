@@ -12,5 +12,13 @@ else
 fi
 
 if command -v wt >/dev/null 2>&1; then
-	eval "$(wt source)" # If this is slow, cache it like we do in step 3!
+	# Cached per shell; regenerated when the wt binary is newer than the cache.
+	_wt_shell="${ZSH_VERSION:+zsh}"
+	_wt_cache="$HOME/.cache/wt_source.${_wt_shell:-sh}"
+	if [ ! -f "$_wt_cache" ] || [ "$(command -v wt)" -nt "$_wt_cache" ]; then
+		wt source >"$_wt_cache"
+	fi
+	# shellcheck disable=SC1090
+	. "$_wt_cache"
+	unset _wt_shell _wt_cache
 fi

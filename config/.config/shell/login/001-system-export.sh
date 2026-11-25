@@ -48,8 +48,14 @@ export LESS_TERMCAP_us=$'\E[04;38;5;111m'
 
 ################## JAVA ###################
 # export JAVA_HOME="/opt/homebrew/opt/openjdk"
-# shellcheck disable=SC2155
-export JAVA_HOME="$(/usr/libexec/java_home -v 21)"
+# Use Homebrew's stable symlink: the versioned Cellar path changes on every `brew upgrade`
+# and leaves long-lived shells (tmux servers) pointing at a directory that no longer exists.
+if [ -d /opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home ]; then
+	export JAVA_HOME="/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home"
+else
+	# shellcheck disable=SC2155
+	export JAVA_HOME="$(/usr/libexec/java_home -v 21)"
+fi
 export JAVA_OPTS="-server -Xms8192m -Xmx12288m -XX:ReservedCodeCacheSize=512m -XX:+UseG1GC -XX:SoftRefLRUPolicyMSPerMB=50 -ea -Dsun.io.useCanonCaches=false -Djava.net.preferIPv4Stack=true -XX:-OmitStackTraceInFastThrow"
 
 ################## GO ###################
@@ -62,9 +68,10 @@ export JAVA_OPTS="-server -Xms8192m -Xmx12288m -XX:ReservedCodeCacheSize=512m -X
 ######################## FLAGS ########################
 # Compilation flags
 export LDFLAGS="-L/opt/homebrew/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
-LDFLAGS+="-L/opt/homebrew/opt/llvm/lib/c++ -Wl,-rpath,/opt/homebrew/opt/llvm/lib/c++"
-LDFLAGS+="-I/opt/homebrew/opt/openssl/include"
-LDFLAGS+="-L/opt/homebrew/opt/openssl/lib"
+# Each += needs a leading space or the flags run together into one invalid argument.
+LDFLAGS+=" -L/opt/homebrew/opt/llvm/lib/c++ -Wl,-rpath,/opt/homebrew/opt/llvm/lib/c++"
+LDFLAGS+=" -I/opt/homebrew/opt/openssl/include"
+LDFLAGS+=" -L/opt/homebrew/opt/openssl/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 # Some system exports requrie gcc-11 from homebrew which lives at /opt/homebrew/bin/gcc-11
 # whilst other require gcc-12
@@ -73,7 +80,7 @@ export ARCHFLAGS="-arch arm64"
 export CXX=clang
 export GRPC_PYTHON_BUILD_SYSTEM_RE2=true
 export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=true
-export GRPC_BUILD_WITH_BORING_SSL_ASM="" pip
+export GRPC_BUILD_WITH_BORING_SSL_ASM=""
 
 # Docker related stuff
 if [ "$(uname -s)" == "Darwin" ]; then

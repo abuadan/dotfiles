@@ -4,6 +4,6 @@ dir=$(
 	zoxide query -l |
 		fzf --height 40% --layout reverse --info inline \
 			--tac --no-sort --query "$*"
-) && cd "$dir"
+) && cd "$dir" || exit
 
 # vim ft=sh
